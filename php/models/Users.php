@@ -1,6 +1,6 @@
 <?php 
     header('Content-Type: application/json');
-    include_once '.\Connection.php';
+    include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/Connection.php");
 
     class User {
 
@@ -40,7 +40,23 @@
 
         function getUserById($cedula){
             $con = Connect();
-            $sql = "SELECT * FROM producto WHERE cedula = $cedula";
+            $sql = "SELECT * FROM usuario WHERE cedula = $cedula";
+            $result = $con->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    return new User(
+                        $row["cedula"],$row["password"],$row["usuarionombre"],
+                        $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
+                }
+            } 
+            $con->close();
+            return null;
+        }
+
+        function getUserByFilter($filtro){
+            $con = Connect();
+            $sql = "SELECT * FROM usuario WHERE $filtro";
             $result = $con->query($sql);
             $usuarios = [];
 
@@ -55,21 +71,20 @@
             return $usuarios;
         }
 
-        function getUserByFilter($filtro){
+        function login($cedula, $password){
             $con = Connect();
-            $sql = "SELECT * FROM producto WHERE $filtro";
+            $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = $password";
             $result = $con->query($sql);
-            $usuarios = [];
+            $con->close();
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $usuarios[] = new User(
+                    return new User(
                         $row["cedula"],$row["password"],$row["usuarionombre"],
                         $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
                 }
             } 
-            $con->close();
-            return $usuarios;
+            return null;
         }
 
     }
