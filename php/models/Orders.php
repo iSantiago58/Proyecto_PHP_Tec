@@ -71,6 +71,31 @@
             return $pedidos;
         }
 
+        function setOrderFeedback($pedidoid, $comment){
+            $con = Connect();
+            $sql = "SELECT * FROM pedido WHERE pedidoid = $pedidoid";
+            $result = $con->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $pedido = new Order(
+                        $row["pedidoid"],$row["fechacompra"],$row["direccionenvio"],
+                            $row["direccionfacturacion"],$row["feedback"],$row["importetotal"]);
+                }
+            }   
+            
+            if ($pedido->$feedback != null){
+                $sql = "UPDATE pedido SET feedback = $comment WHERE pedidoid = $pedidoid";
+                $result = $con->query($sql);
+            }
+            $con->close();
+            if $result == true{
+                return true;   
+            } else {
+                return false;
+            }
+        }
+
         function setOrder($pedido){
 
             $id = $pedido->$pedidoid
