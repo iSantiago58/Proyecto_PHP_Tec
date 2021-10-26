@@ -24,6 +24,46 @@ function ProductCartLogic() {
       var valuePriceOver = parseInt(priceOver.text(), 10);
       valuePriceOver = valuePriceOver - precio;
       priceOver.text(valuePriceOver);
+
+
+      var idnuevo = ".cantidad"+productoid;
+      var cantProduct = $(idnuevo);
+      console.log(cantProduct);
+      if(cantProduct.first().text() == "vendido"){
+        cantProduct.text(1);
+        cantProduct.addClass("sticker").removeClass("stickersold");
+
+        let htmlInteraction ='<ul class="add-actions-link interaction_link'+productoid+'">'+
+                        '<li class="add-cart active" onclick="addToCart('+productoid+',"'+productonombre+'"}","'+productodescripcion+'",'+productoprecio+','+stock,categoriaid+');"><a >Add to cart</a></li>'+
+                        '<li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>'+
+                        '<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i'+
+                        'class="fa fa-eye"></i></a></li>'+
+                    '</ul>';
+        let interactProduct = $(".interact"+productoid).append('');
+        $(".interact"+productoid).remove();
+
+      }
+      var valueCant = parseInt(cantProduct.first().text(), 10);
+      console.log(valueCant);
+
+      valueCant = valueCant-1;
+      if(valueCant == 0 ){
+        cantProduct.text("vendido");
+        cantProduct.addClass("stickersold").removeClass("sticker");
+        let interactProduct = $(".interact"+productoid);
+        $(".interact"+productoid).remove();
+
+      }else{
+        cantProduct.text(valueCant);
+      }
+
+      console.log("cantidad :"  +cantProduct.text() );
+
+
+
+
+
+
     };
   });
 }
@@ -48,7 +88,7 @@ class ProductCart extends HTMLElement {
         </a>
         <div class="minicart-product-details">
             <h6><a href="single-product.html">${productonombre}</a></h6>
-            <span>£40 x 1</span>
+            <span>$ ${productoprecio}</span>
         </div>
         <button class="close" onClick="removeItem(${productoid},${productoprecio});">
             <i class="fa fa-close"></i>
