@@ -86,7 +86,7 @@
         }   
         
         if ($pedido->$feedback != null){
-            $sql = "UPDATE pedido SET feedback = $comment WHERE pedidoid = $pedidoid";
+            $sql = "UPDATE pedido SET feedback = '$comment' WHERE pedidoid = $pedidoid";
             $result = $con->query($sql);
         }
         $con->close();
@@ -108,7 +108,7 @@
 
         $con = Connect();
         $sql = "INSERT INTO pedido (pedidoid, fechacompra, direccionenvio, direccionenvio, direccionfacturacion, feedback, importetotal)
-                VALUES ($id, $fchCompra, $dirEnvio, $dirFact, $feedb, $imp)";
+                VALUES ($id, '$fchCompra', '$dirEnvio', '$dirFact', '$feedb', $imp)";
 
         $result = $con->query($sql);
         $con->close();

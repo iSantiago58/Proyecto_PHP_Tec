@@ -32,18 +32,17 @@
 
     function getPaymentById($mediodepagoid){
         $con = Connect();
-        $sql = "SELECT * FROM producto WHERE mediodepagoid = $mediodepagoid";
+        $sql = "SELECT * FROM mediopago WHERE mediodepagoid = $mediodepagoid";
         $result = $con->query($sql);
-        $mediopagos = [];
-
+        $con->close();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $mediopagos[] = new Payment(
+                return new Payment(
                     $row["mediodepagoid"],$row["mediodepagonombre"]);
             }
         } 
-        $con->close();
-        return $mediopagos;
+        
+        return null;
     }
 
 
