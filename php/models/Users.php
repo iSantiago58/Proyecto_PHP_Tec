@@ -74,7 +74,7 @@
 
     function login($cedula, $password){
         $con = Connect();
-        $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = $password";
+        $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = '$password'";
         $result = $con->query($sql);
         $con->close();
 
@@ -87,7 +87,5 @@
         } 
         return null;
     }
-
-    
 
 ?>
