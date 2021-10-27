@@ -20,73 +20,74 @@
             $this->usuarioesactivo=$usuarioesactivo;
             $this->esadmin=$esadmin;
         }
-        
-        function getUsers(){
-            $con = Connect();
-            $sql = "SELECT * FROM usuario";
-            $result = $con->query($sql);
-            $usuarios = [];
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $usuarios[] = new User(
-                        $row["cedula"],$row["password"],$row["usuarionombre"],
-                        $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
-                }
-            } 
-            $con->close();
-            return $usuarios;
-        }
-
-        function getUserById($cedula){
-            $con = Connect();
-            $sql = "SELECT * FROM usuario WHERE cedula = $cedula";
-            $result = $con->query($sql);
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    return new User(
-                        $row["cedula"],$row["password"],$row["usuarionombre"],
-                        $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
-                }
-            } 
-            $con->close();
-            return null;
-        }
-
-        function getUserByFilter($filtro){
-            $con = Connect();
-            $sql = "SELECT * FROM usuario WHERE $filtro";
-            $result = $con->query($sql);
-            $usuarios = [];
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $usuarios[] = new User(
-                        $row["cedula"],$row["password"],$row["usuarionombre"],
-                        $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
-                }
-            } 
-            $con->close();
-            return $usuarios;
-        }
-
-        function login($cedula, $password){
-            $con = Connect();
-            $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = $password";
-            $result = $con->query($sql);
-            $con->close();
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    return new User(
-                        $row["cedula"],$row["password"],$row["usuarionombre"],
-                        $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
-                }
-            } 
-            return null;
-        }
-
     }
+        
+    public function getUsers(){
+        $con = Connect();
+        $sql = "SELECT * FROM usuario";
+        $result = $con->query($sql);
+        $usuarios = [];
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $usuarios[] = new User(
+                    $row["cedula"],$row["password"],$row["usuarionombre"],
+                    $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
+            }
+        } 
+        $con->close();
+        return $usuarios;
+    }
+
+    function getUserById($cedula){
+        $con = Connect();
+        $sql = "SELECT * FROM usuario WHERE cedula = $cedula";
+        $result = $con->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return new User(
+                    $row["cedula"],$row["password"],$row["usuarionombre"],
+                    $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
+            }
+        } 
+        $con->close();
+        return null;
+    }
+
+    function getUserByFilter($filtro){
+        $con = Connect();
+        $sql = "SELECT * FROM usuario WHERE $filtro";
+        $result = $con->query($sql);
+        $usuarios = [];
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $usuarios[] = new User(
+                    $row["cedula"],$row["password"],$row["usuarionombre"],
+                    $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
+            }
+        } 
+        $con->close();
+        return $usuarios;
+    }
+
+    function login($cedula, $password){
+        $con = Connect();
+        $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = $password";
+        $result = $con->query($sql);
+        $con->close();
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return new User(
+                    $row["cedula"],$row["password"],$row["usuarionombre"],
+                    $row["eshabilitado"],$row["usuarioesactivo"],$row["esadmin"]);
+            }
+        } 
+        return null;
+    }
+
+    
 
 ?>

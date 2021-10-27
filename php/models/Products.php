@@ -23,82 +23,78 @@
             $this->categoriaProd=$categoriaProd;
         }
 
-        function getProducts(){
-            $con = Connect();
-            $sql = "SELECT * FROM producto";
-            $result = $con->query($sql);
-            $productos = [];
+    }
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $productos[] = new Product(
-                        $row["productoid"],$row["productonombre"],$row["productodescripcion"],
-                        $row["productoprecio"],$row["stock"],$row["productoesactivo"],
-                        $row["categoriaid"]);
-                }
-            } 
-            $con->close();
-            return $productos;
-        }
+    function getProducts(){
+        $con = Connect();
+        $sql = "SELECT * FROM producto";
+        $result = $con->query($sql);
+        $productos = [];
 
-        function getProductById($idProducto){
-            $con = Connect();
-            $sql = "SELECT * FROM producto WHERE productoid = $idProducto";
-            $result = $con->query($sql);
-            $producto = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $productos[] = new Product(
+                    $row["productoid"],$row["productonombre"],$row["productodescripcion"],
+                    $row["productoprecio"],$row["stock"],$row["productoesactivo"],
+                    $row["categoriaid"]);
+            }
+        } 
+        $con->close();
+        return $productos;
+    }
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $producto[] = new Product(
-                        $row["productoid"],$row["productonombre"],$row["productodescripcion"],
-                        $row["productoprecio"],$row["stock"],$row["productoesactivo"],
-                        $row["categoriaid"]);
-                }
-            } 
-            $con->close();
-            return $producto;
-        }
+    function getProductById($idProducto){
+        $con = Connect();
+        $sql = "SELECT * FROM producto WHERE productoid = $idProducto";
+        $result = $con->query($sql);
+        $producto = [];
 
-        function getProductsByOrder($orden){
-            $con = Connect();
-            $sql = "SELECT * FROM producto ORDER BY $orden";
-            $result = $con->query($sql);
-            $productos = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $producto[] = new Product(
+                    $row["productoid"],$row["productonombre"],$row["productodescripcion"],
+                    $row["productoprecio"],$row["stock"],$row["productoesactivo"],
+                    $row["categoriaid"]);
+            }
+        } 
+        $con->close();
+        return $producto;
+    }
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $productos[] = new Product(
-                        $row["productoid"],$row["productonombre"],$row["productodescripcion"],
-                        $row["productoprecio"],$row["stock"],$row["productoesactivo"],
-                        $row["categoriaid"]);
-                }
-            } 
-            $con->close();
-            return $productos;
-        }
+    function getProductsByOrder($orden){
+        $con = Connect();
+        $sql = "SELECT * FROM producto ORDER BY $orden";
+        $result = $con->query($sql);
+        $productos = [];
 
-        function getProductsByFilter($filtro){
-            $con = Connect();
-            $sql = "SELECT * FROM producto WHERE $filtro";
-            $result = $con->query($sql);
-            $productos = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $productos[] = new Product(
+                    $row["productoid"],$row["productonombre"],$row["productodescripcion"],
+                    $row["productoprecio"],$row["stock"],$row["productoesactivo"],
+                    $row["categoriaid"]);
+            }
+        } 
+        $con->close();
+        return $productos;
+    }
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $productos[] = new Product(
-                        $row["productoid"],$row["productonombre"],$row["productodescripcion"],
-                        $row["productoprecio"],$row["stock"],$row["productoesactivo"],
-                        $row["categoriaid"]);
-                }
-            } 
-            $con->close();
-            return $productos;
-        }
+    function getProductsByFilter($filtro){
+        $con = Connect();
+        $sql = "SELECT * FROM producto WHERE $filtro";
+        $result = $con->query($sql);
+        $productos = [];
 
-        
-
-
-
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $productos[] = new Product(
+                    $row["productoid"],$row["productonombre"],$row["productodescripcion"],
+                    $row["productoprecio"],$row["stock"],$row["productoesactivo"],
+                    $row["categoriaid"]);
+            }
+        } 
+        $con->close();
+        return $productos;
     }
 
 ?>
