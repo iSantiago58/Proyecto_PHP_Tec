@@ -1,5 +1,4 @@
 <?php
-    header('Content-Type: application/json');
     include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/Connection.php");
 
     class Categoria {

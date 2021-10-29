@@ -1,3 +1,7 @@
+
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Ecommerce PHP!</title>
@@ -52,3 +56,9 @@
 <script src="./components/columnproducts/ColumnProductsComponent.js"></script>
 
 <script src="./components/custommodal/CustomModalComponent.js"></script>
+
+</head>
+
+<body>
+    
+<?php include($_SERVER['DOCUMENT_ROOT']."/Proyecto_PHP_Tec/includes/menu.php");?>
