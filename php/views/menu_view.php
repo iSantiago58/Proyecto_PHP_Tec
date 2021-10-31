@@ -1,54 +1,4 @@
-function HeaderLogic() {
-  $(document).ready(function () {
-    //carro
-    $(document).on("click", ".hm-minicart-trigger", function (e) {
-      console.log("dispara");
-      e.preventDefault();
-      $(this).toggleClass("is-active");
-      $(this)
-        .siblings(
-          ".ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li"
-        )
-        .slideToggle();
-    });
-  });
-}
-
-class HeaderComponent extends HTMLElement {
-  loadCategories() {
-    console.log("carga categorias ");
-
-    return jQuery.ajax({
-      type: "POST",
-      url: "php/Categories.php",
-      dataType: "json",
-      data: { functionname: "getCategories" },
-    });
-  }
-
-  connectedCallback() {
-    HeaderLogic();
-    console.log("hola");
-    var html = this;
-    this.loadCategories()
-      .success(function (data) {
-        //Carga las categorias en en un option de html para agregarlo al search
-        console.log(data);
-        var categorias = data.categorias;
-        var categoriaHtml;
-
-        categorias.forEach((element) => {
-          categoriaHtml =
-            categoriaHtml +
-            "<option value=" +
-            element.idCategoria +
-            ">" +
-            element.nombre +
-            "</option>";
-        });
-
-        html.innerHTML = `
-    <header class="li-header-4">
+<header class="li-header-4">
     <!-- Begin Header Middle Area -->
     <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
         <div class="container">
@@ -63,16 +13,10 @@ class HeaderComponent extends HTMLElement {
                 </div>
                 <!-- Header Logo Area End Here -->
                 <!-- Begin Header Middle Right Area -->
+                <?php if(isset($_SESSION["ci"])): ?>
                 <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                     <!-- Begin Header Middle Searchbox Area -->
-                    <form action="#" class="hm-searchbox">
-                        <select class="nice-select select-search-category">
-                            <option value="0">All</option>
-                            '${categoriaHtml}'
-                        </select>
-                        <input type="text" placeholder="Enter your search key ...">
-                        <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+                    
                     <!-- Header Middle Searchbox Area End Here -->
                     <!-- Begin Header Middle Right Area -->
                     <div class="header-middle-right">
@@ -88,30 +32,7 @@ class HeaderComponent extends HTMLElement {
                                 <span></span>
                                 <div class="minicart" id="cart">
                                     <ul class="minicart-product-list " id="cart-content">
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="images/product/small-size/1.jpg" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="images/product/small-size/2.jpg" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
+                                        
                                     </ul>
                                     <p class="minicart-total" id="cart-subtotal">SUBTOTAL: <span>0</span></p>
                                     <div class="minicart-button">
@@ -131,6 +52,7 @@ class HeaderComponent extends HTMLElement {
                     <!-- Header Middle Right Area End Here -->
                 </div>
                 <!-- Header Middle Right Area End Here -->
+                <?php endif;  ?>
             </div>
         </div>
     </div>
@@ -146,11 +68,11 @@ class HeaderComponent extends HTMLElement {
                             <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
-                                    
+
                                 </li>
-                                
+
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="<?php echo constant('URL').$_GET['url'];?>/logout" >Logout</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -171,15 +93,4 @@ class HeaderComponent extends HTMLElement {
     </div>
     <!-- Mobile Menu Area End Here -->
 </header>
-<!-- Header Area End Here -->`;
-      })
-      .error(function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log(XMLHttpRequest);
-        console.log(textStatus);
-
-        console.log(errorThrown);
-      });
-  }
-}
-
-customElements.define("header-component", HeaderComponent);
+<!-- Header Area End Here -->

@@ -1,64 +1,41 @@
-
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Ecommerce PHP!</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-<!-- Material Design Iconic Font-V2.2.0 -->
-<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- Font Awesome Stars-->
-<link rel="stylesheet" href="css/fontawesome-stars.css">
-<!-- Meanmenu CSS -->
-<link rel="stylesheet" href="css/meanmenu.css">
-<!-- owl carousel CSS -->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<!-- Slick Carousel CSS -->
-<link rel="stylesheet" href="css/slick.css">
-<!-- Animate CSS -->
-<link rel="stylesheet" href="css/animate.css">
-<!-- Jquery-ui CSS -->
-<link rel="stylesheet" href="css/jquery-ui.min.css">
-<!-- Venobox CSS -->
-<link rel="stylesheet" href="css/venobox.css">
-<!-- Nice Select CSS -->
-<link rel="stylesheet" href="css/nice-select.css">
-<!-- Magnific Popup CSS -->
-<link rel="stylesheet" href="css/magnific-popup.css">
-<!-- Bootstrap V4.1.3 Fremwork CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Helper CSS -->
-<link rel="stylesheet" href="css/helper.css">
-<!-- Main Style CSS -->
-<link rel="stylesheet" href="style.css">
-<!-- Responsive CSS -->
-<link rel="stylesheet" href="css/responsive.css">
-<!-- Modernizr js -->
-<script src="js/vendor/jquery-1.12.4.min.js"></script>
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-<script src="./components/productcart/ProductCartComponent.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Ecommerce PHP!</title>
 
-<script src="./components/product/productComponent.js"></script>
-
-<script src="./components/FeatureProduct.js"></script>
-<script src="./components/header/HeaderComponent.js"></script>
-<script src="./components/banner/BannerComponent.js"></script>
-<script src="./components/productarea/ProductAreaComponent.js"></script>
-<script src="./components/smallbanner/SmaillBannerComponent.js"></script>
-<script src="./components/slider/SliderComponent.js"></script>
-<script src="./components/bigbanner/BigBannerComponent.js"></script>
-<script src="./components/columnproducts/ColumnProductsComponent.js"></script>
-
-<script src="./components/custommodal/CustomModalComponent.js"></script>
-
-</head>
-
-<body>
-    
-<?php include($_SERVER['DOCUMENT_ROOT']."/Proyecto_PHP_Tec/includes/menu.php");?>
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+        <!-- Material Design Iconic Font-V2.2.0 -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/material-design-iconic-font.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/font-awesome.min.css">
+        <!-- Font Awesome Stars-->
+        <link rel="stylesheet" href="<?php echo URL;?>css/fontawesome-stars.css">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/meanmenu.css">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/owl.carousel.min.css">
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/slick.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/animate.css">
+        <!-- Jquery-ui CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/jquery-ui.min.css">
+        <!-- Venobox CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/venobox.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/nice-select.css">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/magnific-popup.css">
+        <!-- Bootstrap V4.1.3 Fremwork CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/bootstrap.min.css">
+        <!-- Helper CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/helper.css">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>style.css">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="<?php echo URL;?>css/responsive.css">
+        <!-- Modernizr js -->
+    </head>
+    <body>

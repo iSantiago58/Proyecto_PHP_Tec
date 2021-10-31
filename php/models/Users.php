@@ -1,5 +1,4 @@
 <?php 
-    header('Content-Type: application/json');
     include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/Connection.php");
 
     class User {
@@ -23,7 +22,7 @@
     }
 
     
-        
+        /*
     public function getUsers(){
         $con = Connect();
         $sql = "SELECT * FROM usuario";
@@ -40,7 +39,19 @@
         $con->close();
         return $usuarios;
     }
-
+*/
+    /*
+    function login(){
+        if ($count > 0) {
+			
+			Session::init();
+			Session::set('role', "user");
+		} 
+		else {
+			Session::set('loggedIn', false);
+		}
+    }
+    */
     function getUserById($cedula){
         $con = Connect();
         $sql = "SELECT * FROM usuario WHERE cedula = $cedula";
@@ -73,13 +84,12 @@
         $con->close();
         return $usuarios;
     }
-
+    
     function login($cedula, $password){
         $con = Connect();
-        $sql = "SELECT * FROM usuario WHERE cedula = $cedula AND password = '$password'";
+        $sql = "SELECT * FROM usuario WHERE cedula = '$cedula' AND password = '$password'";
         $result = $con->query($sql);
         $con->close();
-
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 return new User(
@@ -89,5 +99,4 @@
         } 
         return null;
     }
-
 ?>
