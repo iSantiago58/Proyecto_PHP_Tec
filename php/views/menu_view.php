@@ -1,3 +1,5 @@
+<?php $pathLogo=constant('URL')."images/menu/logo/"; ?>
+
 <header class="li-header-4">
     <!-- Begin Header Middle Area -->
     <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
@@ -7,7 +9,7 @@
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
                         <a href="index.html">
-                            <img src="images/menu/logo/2.jpg" alt="">
+                            <img src="<?php echo $pathLogo;?>2.jpg" alt="">
                         </a>
                     </div>
                 </div>
@@ -72,7 +74,7 @@
                                 </li>
 
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="<?php echo constant('URL').$_GET['url'];?>/logout" >Logout</a></li>
+                                <li><a href="<?php echo $this->pagePath;?>Logout">Logout</a></li>
                             </ul>
                         </nav>
                     </div>

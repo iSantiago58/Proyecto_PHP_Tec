@@ -81,7 +81,9 @@ Custom para php
 }
 
 
-
+.order-photos{
+    display: grid;
+}
 
 
 
@@ -104,8 +106,14 @@ body {
   font-style: normal;
   font-weight: normal;
   overflow-x: hidden;
-  overflow-y:hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  
 }
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
 a {
   color: #a4a4a4;
   transition: 0.3s ease-in-out;
@@ -1245,6 +1253,8 @@ textarea:focus {
 .modal-wrapper .slider-thumbs-1 {
   margin-top: 10px;
   margin-right: -10px;
+  display: flex;
+
 }
 .modal-wrapper .slider-thumbs-1 .sm-image {
   margin-right: 10px;
@@ -2599,7 +2609,7 @@ textarea:focus {
 }
 .add-actions-link li a {
   color: #a4a4a4;
-  display: block;
+  display: list-item;
   font-size: 17px;
   font-weight: 400;
   padding: 0;
