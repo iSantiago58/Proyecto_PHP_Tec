@@ -3,32 +3,47 @@
 class App{
 
     function __construct(){
-
-        $url = rtrim($_GET['url'], "/");
+        $url = isset($_GET['url'])? $_GET['url']: null;
+        $url = rtrim($url, '/');
         $url = explode('/', $url);
-        //var_dump($url);
-        $nombreControlador = $url[0];
-        $archivoController = CONTROLLERS.$nombreControlador.'.php';
 
-        if(file_exists($archivoController)){
-            require_once  $archivoController;
-            $controller = new $nombreControlador;
+        if(empty($url[0])){
+            $archivoController = CONTROLLERS.'/Login.php';
+            require $archivoController;
+            $controller = new Login();
             $controller->loadModels();
 
             $controller->render();
-             if(isset($url[1])){
-                $controller->{$url[1]}();
-
-             }
-
+            return false;
         }else{
+            $archivoController = CONTROLLERS . $url[0] . '.php';
+        }
+        if(file_exists($archivoController)){
+            require_once $archivoController;
 
-            echo "ruta ". $_SERVER['DOCUMENT_ROOT'].'/proyecto_php_tec/php/'.$archivoController;
-            echo "crear clase error o no ";
+            // inicializar controlador
+            $controller = new $url[0];
+            $controller->loadModels();
+            
+            // # elementos del arreglo
+            $nparam = sizeof($url);
 
-         }
+            if($nparam > 1){
+                if($nparam > 2){
+                    $param = [];
+                    for($i = 2; $i<$nparam; $i++){
+                        array_push($param, $url[$i]);
+                    }
+                    $controller->{$url[1]}($param);
+                }else{
+                    $controller->{$url[1]}();
+                }
+            }else{
+                $controller->render();
+            }
+        }else{
+            echo "Error";
+        }
     }
-
 }
-
 ?>
