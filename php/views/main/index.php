@@ -32,7 +32,7 @@ foreach($productos as $key => $p){
         term;
 
         $urlFillCart=  constant('URL') . 'main/fillCar/'; 
-        $urlModaCart=  constant('URL') . 'main/modal/?idProduct='.$idProducto; 
+        $urlModaCart=  constant('URL') . 'main/modal/'.$idProducto; 
 
         $htmlAction=<<<term
         <div class="add-actions interact${idProducto}">
