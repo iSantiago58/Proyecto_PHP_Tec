@@ -5,12 +5,13 @@ class CategoryModel {
     public $categoriaNombre;
     public $categoriaId;
 
-    public function __construct($id, $nombre){
+    function __construct($id, $nombre){
         $this->categoriaId=$id;
         $this->categoriaNombre=$nombre;
     }
+}
 
-    public function allCategories(){
+     function allCategories(){
         $link = Connect();
         $sql = "SELECT * FROM categoria";
         $result = $link->query($sql);
@@ -29,7 +30,7 @@ class CategoryModel {
     }
 
 
-}
+
 
 
 ?>

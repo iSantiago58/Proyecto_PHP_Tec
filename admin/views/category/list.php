@@ -8,7 +8,6 @@
 		}?>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<?php print_r($this->categories)?>
 				<div class="table-responsive margin-bottom-30">
 					<div class="margin-bottom-10">
 						<a href="<?=PROJECT?>category/add" class="btn btn-primary">Agregar</a>
@@ -21,13 +20,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-                            <tr>
-                                <td></td>
-                            
-                                <td class="text-center"><a href="">Editar</a></td>
-                            </tr>
-            
+							<?php if($this->categories!=null){
+								foreach($this->categories as $category){?>
+									  <tr>
+										<td><?=$category->categoriaNombre?></td>
+									
+										<td class="text-center"><a href="">Editar</a></td>
+									</tr>
+							<?php }} ?>
 						</tbody>
 					</table>
 				</div>

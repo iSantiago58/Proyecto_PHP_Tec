@@ -7,9 +7,10 @@ class Controller{
     }
 
     function loadModel($model){
-       $url =  BASE_URL.'models/'.$model.'_model.php';
-       require $url;
-
+       $url = MODELS.$model.'_model.php';
+       if(file_exists($url)){
+            require $url;
+        }
     }
 
 

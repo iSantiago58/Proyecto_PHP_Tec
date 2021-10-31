@@ -10,29 +10,27 @@ class ProductModel {
     public $ProductoActivo;
     public $categoriaId;
 
+    function __construct(){}
+
+}
 
 
-    public function __construct(){}
+function allProducts(){
+    $link = Connect();
+    $sql = "SELECT * FROM producto";
+    $result = $link->query($sql);
+    $listUsuarios = [];
 
-    public function allProducts(){
-        $link = Connect();
-        $sql = "SELECT * FROM producto";
-        $result = $link->query($sql);
-        $listUsuarios = [];
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $listUsuarios[] = new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],$row["productoesactivo"],$row["categoriaid"]);
+        }
+    } 
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                $listUsuarios[] = new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],$row["productoesactivo"],$row["categoriaid"]);
-            }
-        } 
+    $link->close();
 
-        $link->close();
-
-        return $listUsuarios;
-    }
-
-
+    return $listUsuarios;
 }
 
 
