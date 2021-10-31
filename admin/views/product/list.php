@@ -3,9 +3,9 @@
         <h1>Productos</h1>
     </header>
     <div id="content" class="padding-20">
-        <?if(isset($msj)){
-            print $msj;
-        }?>
+        <?php if(isset($this->message)){
+			print_r( $this->message);
+		}?>
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="table-responsive margin-bottom-30">
@@ -24,23 +24,35 @@
                         </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            if($this->products!=null){
+                                foreach($this->products as $product){
+                                    $img=explode("/", $product->images['0'] );
+                                    $imgName=$img[7];
+                                    $imgPath=PROJECT.'productImages/'.$product->productId.'/'.$imgName;        
+                                ?>
+                                    <tr>
+                                        <td><?=$product->productName?></td>
+                                        <td><?=$product->productPrice?></td>
+                                        <td><?=$product->productStock?></td>
+                                        <td class="text-center">
+                                            <img src="<?=$imgPath?>" style="width:100px">
+                                        </td>
+                                        <td class="text-center">
+                                            <label class="switch switch-primary">
+                                                <input type="checkbox" <?php if($product->productActive==1){?>checked<?php }?> onclick="changeProductStatus()">
+                                                <span class="switch-label" data-on="SI" data-off="NO"></span>
+                                            </label>
+                                        </td>
+                                        <td class="text-center"><a href="">Editar</a></td>
+                                    
+                                    </tr>
+                               <?php }
+
+
+                            } ?>
                     
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="text-center">
-                                        <img src="" style="width:50px">
-                                    </td>
-                                    <td class="text-center">
-                                        <label class="switch switch-primary">
-                                            <input type="checkbox" checked onclick="changeProductStatus()">
-                                            <span class="switch-label" data-on="SI" data-off="NO"></span>
-                                        </label>
-                                    </td>
-                                    <td class="text-center"><a href="">Editar</a></td>
-                                  
-                                </tr>
+                               
                         </tbody>
                     </table>
                 </div>
