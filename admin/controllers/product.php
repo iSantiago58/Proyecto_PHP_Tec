@@ -4,21 +4,34 @@
 
         function __construct(){ 
             parent::__construct();
-           
+            $this->view->categories = null;
+            $this->view->message=null;
+            $this->view->products=null;
+        }
+
+        function loadModels(){
+            $this->loadModel('product');
+            $this->loadModel('category');
         }
 
         function render(){
+            if(isset($_GET['msj'])){
+	            if($_GET['msj']=="agregar"){
+	                $this->view->message="<div class='alert alert-success'>Agregado correctamente.</div>";
+	            }elseif($_GET['msj']=="editar"){
+	                $this->view->message="<div class='alert alert-success'>Editado correctamente.</div>";
+	            }elseif($_GET['msj']=="eliminar"){
+                    $this->view->message="<div class='alert alert-success'>Eliminado correctamente.</div>";
+	            }
+	        }
+            $this->view->products=allProducts();
             $this->view->render('header_view');
             $this->view->render('product/list');
             $this->view->render('footer_view');
         }
 
-        function getAll(){
-            $this->model->getAll();
-
-        }
-
         function add(){
+            $this->view->categories= allCategories();
             $this->view->render('header_view');
             $this->view->render('product/add');
             $this->view->render('footer_view');
@@ -26,7 +39,7 @@
         }
 
 
-        public function uploadPhotoTmp($orden, $id=""){
+        function uploadPhotoTmp($orden, $id=""){
             // if(isset($_SESSION['usr_adm_login'])){
                 require_once('inc/slim.php');
                 try{
@@ -77,7 +90,7 @@
                         $name=$nombrebase."_".$contador.".".$extension;
                         $contador++;
                     }
-                    $ruta="imgTemp/propiedad";
+                    $ruta="imgTemp/";
                     // get the crop data for the output image
                     $data=$image['output']['data'];
                     $output=Slim::saveFile($data, $name, $ruta, false);
@@ -111,7 +124,17 @@
             //     redirect(base_url());
             // }
         }
-    
+
+
+        function add_product_db(){
+            $productName=$_POST['productName']; 
+            $productCategory=$_POST['productCategory']; 
+            $productPrice=$_POST['productPrice']; 
+            $productStock=$_POST['productStock']; 
+            $productDescription=$_POST['productDescription']; 
+            $imagesArray=$_POST['imagesArray']; 
+            print_r(putProduct($productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray));
+        }
 
     }
 
