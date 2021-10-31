@@ -29,6 +29,34 @@ class CategoryModel {
         return $listUsuarios;
     }
 
+    function existsCategory($category){
+        $link = Connect();
+        $sql = "select * from categoria where categorianombre = '$category' ";
+        $result = $link->query($sql);
+        $existe=false;
+        if($result->num_rows>0){
+            $existe=true;
+        }
+        $link->close();
+        
+        return $existe;
+    }
+
+
+    function putCategory($name){
+        if(!existsCategory($name)){
+            $link = Connect();
+            $sql = "insert into categoria(categorianombre) values('$name')";
+            $result = $link->query($sql);
+            $link->close();
+    
+            return $result;
+        }else{
+            return -1;
+        }
+    }
+
+    
 
 
 

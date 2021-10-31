@@ -1,12 +1,11 @@
 <?php
-    //include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/admin/models/category_model.php");
-
 
     Class Category extends Controller{
 
         function __construct(){ 
             parent::__construct();
             $this->view->categories= null; 
+            $this->view->message= null;
         }
 
         function loadModels(){
@@ -14,9 +13,17 @@
         }
 
         function render(){
+            if(isset($_GET['msj'])){
+	            if($_GET['msj']=="agregar"){
+	                $this->view->message="<div class='alert alert-success'>Agregada correctamente.</div>";
+	            }elseif($_GET['msj']=="editar"){
+	                $this->view->message="<div class='alert alert-success'>Editada correctamente.</div>";
+	            }elseif($_GET['msj']=="eliminar"){
+                    $this->view->message="<div class='alert alert-success'>Eliminado correctamente.</div>";
+	            }
+	        }
+            $this->view->categories = allCategories(); 
             $this->view->render('header_view');
-           // $this->view->categories=$this->getAll();
-            $categories = $this->view->categories = allCategories();  
             $this->view->render('category/list');
             $this->view->render('footer_view');
         }
@@ -26,6 +33,12 @@
             $this->view->render('header_view');
             $this->view->render('category/add');
             $this->view->render('footer_view');
+
+        }
+
+        function add_category_db(){
+            $categoryName=$_POST['categoryName']; 
+            echo trim(putCategory($categoryName));
 
         }
     

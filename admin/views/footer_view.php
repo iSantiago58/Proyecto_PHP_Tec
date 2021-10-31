@@ -46,8 +46,6 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script type="text/javascript" src="<?=PROJECT?>assets/js/select-multiple.min.js"></script>
 		<!-- Mios -->
-		<script type="text/javascript" src="<?=PROJECT?>assets/js/funciones.js"></script>
-		<script type="text/javascript" src="<?=PROJECT?>assets/js/users.js"></script>
-		<script type="text/javascript" src="<?=PROJECT?>assets/js/products.js"></script>
+		<script type="text/javascript" src="<?=PROJECT?>assets/js/categories.js"></script>
 	</body>
 </html>
