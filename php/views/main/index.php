@@ -15,13 +15,42 @@ foreach($productos as $key => $p){
     $stock=$p->stock;
     $esActivoProd=$p->esActivoProd;
     $categoriaProd=$p->categoriaProd;
+
+
+    $htmlStock ="";
+    $htmlAction ="";
+
+    if($stock==0){
+        $htmlStock =<<<term
+        <span class="stickersold cantidad${idProducto}">${stock}</span>
+        term;
+        $htmlAction='';
+    }else{
+        $htmlStock =<<<term
+        <span class="sticker cantidad${idProducto}">${stock}</span>
+        term;
+
+        $urlFillCart=  constant('URL') . 'main/fillCar/'; ;
+        $htmlAction=<<<term
+        <div class="add-actions interact${idProducto}">
+                <ul class="add-actions-link">
+                    <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd});">
+                    <a href="${urlFillCart}">Add to cart</a></li>
+                    <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter"><i
+                                class="fa fa-eye"></i></a></li>
+                </ul>
+            </div>
+        term;
+    }
+    $pathImg=constant('URL')."images/product/large-size/";
     $htmlProduct =<<<term
     <div class="single-product-wrap">
     <div class="product-image">
             <a href="single-product.html">
-                <img src="images/product/large-size/1.jpg" alt="Li's Product Image">
+                <img src="${pathImg}1.jpg" alt="Li's Product Image">
             </a>
-            <span class="sticker">New</span>
+            ${htmlStock}
         </div>
         <div class="product_desc">
             <div class="product_desc_info">
@@ -31,14 +60,7 @@ foreach($productos as $key => $p){
                     <span class="new-price">$${precioProd}</span>
                 </div>
             </div>
-            <div class="add-actions">
-                <ul class="add-actions-link">
-                    <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd});"><a href="#">Add to cart</a></li>
-                    <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
-                    <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i
-                                class="fa fa-eye"></i></a></li>
-                </ul>
-            </div>
+            ${htmlAction}  
         </div>
     </div>
     term;

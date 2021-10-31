@@ -90,7 +90,7 @@
             $result = $con->query($sql);
         }
         $con->close();
-        if $result == true{
+        if ($result == true){
             return true;   
         } else {
             return false;
@@ -99,12 +99,12 @@
 
     function setOrder($pedido){
 
-        $id = $pedido->$pedidoid
-        $fchCompra = $pedido->$fechacompra
-        $dirEnvio = $pedido->$direccionenvio
-        $dirFact = $pedido->$direccionfacturacion
-        $feedb = $pedido->$feedback
-        $imp = $pedido->$importetotal
+        $id = $pedido->$pedidoid;
+        $fchCompra = $pedido->$fechacompra;
+        $dirEnvio = $pedido->$direccionenvio;
+        $dirFact = $pedido->$direccionfacturacion;
+        $feedb = $pedido->$feedback;
+        $imp = $pedido->$importetotal;
 
         $con = Connect();
         $sql = "INSERT INTO pedido (pedidoid, fechacompra, direccionenvio, direccionenvio, direccionfacturacion, feedback, importetotal)
@@ -113,7 +113,7 @@
         $result = $con->query($sql);
         $con->close();
 
-        if $result == true{
+        if ($result == true){
             return true;   
         } else {
             return false;

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    Class Main extends Controller{
+    Class main extends Controller{
 
         function __construct(){ 
             parent::__construct();
@@ -16,6 +16,10 @@
         function loadModels(){
             $this->loadModel('categories');
             $this->loadModel('products');
+        }
+
+        function fillCar(){
+            $this->render();
         }
         function logOut(){
             session_destroy();

@@ -104,6 +104,7 @@ body {
   font-style: normal;
   font-weight: normal;
   overflow-x: hidden;
+  overflow-y:hidden;
 }
 a {
   color: #a4a4a4;
@@ -1977,7 +1978,6 @@ textarea:focus {
   color: #ffffff;
 }
 .hb-menu nav > ul > li > a::after {
-  content: "\f107";
   position: absolute;
   top: 8px;
   right: 15px;
@@ -3310,8 +3310,8 @@ textarea:focus {
   font-family: fontawesome;
 }
 .category-heading > h2 > i {
-  float: ;
-  text-align: ;
+  float: 1;
+  text-align: 1;
   float: right;
   padding-right: 20px;
   font-size: 12px;
