@@ -7,8 +7,8 @@
         public $nombre;
 
         function __construct($idCategoria,$nombre) {
-            $this->categoriaid=$idCategoria;
-            $this->categorianombre=$nombre;
+            $this->idCategoria=$idCategoria;
+            $this->nombre=$nombre;
         }
          
     }

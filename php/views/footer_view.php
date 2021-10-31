@@ -1,45 +1,46 @@
 <footer>
-	<script src="js/vendor/popper.min.js"></script>
+	<script src="<?php echo URL;?>js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="<?php echo URL;?>js/vendor/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/vendor/popper.min.js"></script>
 	<!-- Bootstrap V4.1.3 Fremwork js -->
-	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/bootstrap.min.js"></script>
 	<!-- Ajax Mail js -->
-	<script src="js/ajax-mail.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/ajax-mail.js"></script>
 	<!-- Meanmenu js -->
-	<script src="js/jquery.meanmenu.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.meanmenu.min.js"></script>
 	<!-- Wow.min js -->
-	<script src="js/wow.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/wow.min.js"></script>
 	<!-- Slick Carousel js -->
-	<script src="js/slick.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/slick.min.js"></script>
 	<!-- Owl Carousel-2 js -->
-	<script src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/owl.carousel.min.js"></script>
 	<!-- Magnific popup js -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.magnific-popup.min.js"></script>
 	<!-- Isotope js -->
-	<script src="js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/isotope.pkgd.min.js"></script>
 	<!-- Imagesloaded js -->
-	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/imagesloaded.pkgd.min.js"></script>
 	<!-- Mixitup js -->
-	<script src="js/jquery.mixitup.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.mixitup.min.js"></script>
 	<!-- Countdown -->
-	<script src="js/jquery.countdown.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.countdown.min.js"></script>
 	<!-- Counterup -->
-	<script src="js/jquery.counterup.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.counterup.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/waypoints.min.js"></script>
 	<!-- Barrating -->
-	<script src="js/jquery.barrating.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.barrating.min.js"></script>
 	<!-- Jquery-ui -->
-	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery-ui.min.js"></script>
 	<!-- Venobox -->
-	<script src="js/venobox.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/venobox.min.js"></script>
 	<!-- Nice Select js -->
-	<script src="js/jquery.nice-select.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/jquery.nice-select.min.js"></script>
 	<!-- ScrollUp js -->
-	<script src="js/scrollUp.min.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/scrollUp.min.js"></script>
 	<!-- Main/Activator js -->
-	<script src="js/main.js"></script>
-	<script src="js/index.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/main.js"></script>
+	<script type="text/javascript" src="<?php echo URL;?>js/index.js"></script>
 	</footer>
 </body>
-
-	</html>
+</html>
