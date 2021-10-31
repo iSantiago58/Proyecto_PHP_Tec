@@ -13,23 +13,36 @@ class App{
             $controller->loadModels();
             $controller->render();
             return false;
+        }else{
+            $archivoController = CONTROLLERS . $url[0] . '.php';
         }
-        $nombreControlador = $url[0];
-        $archivoController = CONTROLLERS.$nombreControlador.'.php';
 
         if(file_exists($archivoController)){
             require_once  $archivoController;
-            $controller = new $nombreControlador;
-            $controller->loadModels();
-             if(isset($url[1])){
 
-                $controller->{$url[1]}();
-             }else{
+            $controller = new $url[0];
+            $controller->loadModels();
+            
+            $nparam = sizeof($url);
+
+            if($nparam > 1){
+                if($nparam > 2){
+                    $param = [];
+                    for($i = 2; $i<$nparam; $i++){
+                        array_push($param, $url[$i]);
+                    }
+                    $controller->{$url[1]}($param);
+                }else{
+                    $controller->{$url[1]}();
+                }
+            }else{
                 $controller->render();
-             }
+            }
         }else{
-            echo "crear clase error o no ";
-         }
+            echo $url[0];
+
+            echo "Error";
+        }
     }
 }
 
