@@ -6,6 +6,7 @@ define("PHP",BASE.'php/');
 define("LIBS",PHP.'libs/');
 define("MODELS",PHP.'models/');
 define("VIEWS",PHP.'views/');
+
 define("CONTROLLERS",PHP.'controllers/');
 
 ?>

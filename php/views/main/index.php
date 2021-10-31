@@ -1,7 +1,7 @@
 <?php
-$categorias = getCategorias();
+$categorias = $this->categories;
 
-$productos = getProducts();
+$productos = $this->products;
 
 
 $htmlContent ="";
@@ -15,13 +15,44 @@ foreach($productos as $key => $p){
     $stock=$p->stock;
     $esActivoProd=$p->esActivoProd;
     $categoriaProd=$p->categoriaProd;
+
+
+    $htmlStock ="";
+    $htmlAction ="";
+    $pathModal =$this->pagePath."modal";
+
+    if($stock==0){
+        $htmlStock =<<<term
+        <span class="stickersold cantidad${idProducto}">${stock}</span>
+        term;
+        $htmlAction='';
+    }else{
+        $htmlStock =<<<term
+        <span class="sticker cantidad${idProducto}">${stock}</span>
+        term;
+
+        $urlFillCart=  constant('URL') . 'main/fillCar/'; 
+        $urlModaCart=  constant('URL') . 'main/modal/?idProduct='.$idProducto; 
+
+        $htmlAction=<<<term
+        <div class="add-actions interact${idProducto}">
+                <ul class="add-actions-link">
+                    <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd});">
+                    <a href="${urlFillCart}">Add to cart</a></li>
+                    <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a class="quick-view" href="${urlModaCart}"><i class="fa fa-eye"></i></a></li>
+                </ul>
+            </div>
+        term;
+    }
+    $pathImg=constant('URL')."images/product/large-size/";
     $htmlProduct =<<<term
     <div class="single-product-wrap">
     <div class="product-image">
             <a href="single-product.html">
-                <img src="images/product/large-size/1.jpg" alt="Li's Product Image">
+                <img src="${pathImg}1.jpg" alt="Li's Product Image">
             </a>
-            <span class="sticker">New</span>
+            ${htmlStock}
         </div>
         <div class="product_desc">
             <div class="product_desc_info">
@@ -31,14 +62,7 @@ foreach($productos as $key => $p){
                     <span class="new-price">$${precioProd}</span>
                 </div>
             </div>
-            <div class="add-actions">
-                <ul class="add-actions-link">
-                    <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd});"><a href="#">Add to cart</a></li>
-                    <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
-                    <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i
-                                class="fa fa-eye"></i></a></li>
-                </ul>
-            </div>
+            ${htmlAction}  
         </div>
     </div>
     term;
@@ -86,5 +110,80 @@ foreach ($categorias as $key => $value) {
     
     $htmlContent =$htmlContent.$htmlCategory;
 }
+
+foreach ($categorias as $key => $value) {
+    $catName =$value->nombre;
+    $htmlProd="";
+    if(array_key_exists($value->idCategoria,$htmlArrayProduct)){
+        $htmlProd =$htmlArrayProduct[$value->idCategoria];
+    }
+    $htmlCategory="";
+    if($htmlProd!=""){
+    $htmlCategory = <<<term
+    <div class="product-area pt-55 pb-25 pt-xs-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="li-product-tab">
+                    <ul class="nav li-product-menu">
+                        <li><a class="active" data-toggle="tab" href="#li-new-product"><span>${catName}</span></a></li>
+                    </ul>
+                </div>
+                <!-- Begin Li's Tab Menu Content Area -->
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="li-new-product" class="tab-pane active show" role="tabpanel">
+                <div class="row">
+                    <div class="product-active owl-carousel">
+                        ${htmlProd}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    term;
+    }
+    
+    $htmlContent =$htmlContent.$htmlCategory;
+}
+
+foreach ($categorias as $key => $value) {
+    $catName =$value->nombre;
+    $htmlProd="";
+    if(array_key_exists($value->idCategoria,$htmlArrayProduct)){
+        $htmlProd =$htmlArrayProduct[$value->idCategoria];
+    }
+    $htmlCategory="";
+    if($htmlProd!=""){
+    $htmlCategory = <<<term
+    <div class="product-area pt-55 pb-25 pt-xs-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="li-product-tab">
+                    <ul class="nav li-product-menu">
+                        <li><a class="active" data-toggle="tab" href="#li-new-product"><span>${catName}</span></a></li>
+                    </ul>
+                </div>
+                <!-- Begin Li's Tab Menu Content Area -->
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="li-new-product" class="tab-pane active show" role="tabpanel">
+                <div class="row">
+                    <div class="product-active owl-carousel">
+                        ${htmlProd}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    term;
+    }
+    
+    $htmlContent =$htmlContent.$htmlCategory;
+}
+
 echo $htmlContent;
 ?>

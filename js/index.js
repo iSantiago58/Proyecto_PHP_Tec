@@ -7,15 +7,15 @@ var registerUser; // Here's the difference
 
 
 $(document).ready(function () {
-  registerUser = function (cedula,password,usuarionombre){
-    
+  registerUser = function (cedula, password, usuarionombre) {
+
   };
 
 
 
 
 
-      //carro
+  //carro
   addToCart = function (
     productoid,
     productonombre,
@@ -24,14 +24,20 @@ $(document).ready(function () {
     stock,
     categoriaid
   ) {
-    console.log("intenta agregar algo ");
-    var $newItem = $(`<product-cart 
-        productoid=${productoid}
-        productonombre=${productonombre}
-        productodescripcion=${productodescripcion}
-        productoprecio=${productoprecio}
-        stock=${stock}
-        categoriaid=${categoriaid}></product-cart>`);
+    var $newItem = $(`
+    <li id="cart-content-${productoid}">
+        <a href="single-product.html" class="minicart-product-image">
+            <img class ="cart-list-item" src="images/product/small-size/1.jpg" alt="cart products">
+        </a>
+        <div class="minicart-product-details">
+            <h6><a href="single-product.html">${productonombre}</a></h6>
+            <span>$ ${productoprecio}</span>
+        </div>
+        <button class="close" onClick="removeItem(${productoid},${productoprecio});">
+            <i class="fa fa-close"></i>
+        </button>
+    </li>`);
+
     $("#cart-content").append($newItem);
     var span = $("#cart-subtotal > span");
     console.log(span);
@@ -54,49 +60,49 @@ $(document).ready(function () {
 
     //cambia la cantidad de productos 
 
-    var idnuevo = ".cantidad"+productoid;
+    var idnuevo = ".cantidad" + productoid;
     var cantProduct = $(idnuevo);
     console.log(cantProduct);
     var valueCant = parseInt(cantProduct.first().text(), 10);
     console.log(valueCant);
 
-    valueCant = valueCant-1;
-    if(valueCant == 0 ){
+    valueCant = valueCant - 1;
+    if (valueCant == 0) {
       cantProduct.text("vendido");
       cantProduct.addClass("stickersold").removeClass("sticker");
-      let interactProduct = $(".interact"+productoid);
-      $(".interact"+productoid).remove();
+      let interactProduct = $(".interact" + productoid);
+      $(".interact" + productoid).remove();
 
-    }else{
+    } else {
       cantProduct.text(valueCant);
     }
 
-    console.log("cantidad :"  +cantProduct.text() );
+    console.log("cantidad :" + cantProduct.text());
 
 
   };
 
-  function js_categorias(){
+  function js_categorias() {
     jQuery.ajax({
-        type: "POST",
-        url: "php/Categories.php",
-        dataType: "json",
-        data: { functionname: "getCategories" },
+      type: "POST",
+      url: "php/Categories.php",
+      dataType: "json",
+      data: { functionname: "getCategories" },
     }).success(function (data) {
-        var categorias = data.categorias;
-        var categoriaHtml;
+      var categorias = data.categorias;
+      var categoriaHtml;
 
 
-        categorias.forEach((element) => {
-          categoriaHtml =
-            categoriaHtml +
-            "<option value=" +
-            element.idCategoria +
-            ">" +
-            element.nombre +
-            "</option>";
-        });
-        $("#search_opt").insertAfter(categoriaHtml).last();
+      categorias.forEach((element) => {
+        categoriaHtml =
+          categoriaHtml +
+          "<option value=" +
+          element.idCategoria +
+          ">" +
+          element.nombre +
+          "</option>";
+      });
+      $("#search_opt").insertAfter(categoriaHtml).last();
     });
   };
 });

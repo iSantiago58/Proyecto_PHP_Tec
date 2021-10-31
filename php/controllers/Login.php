@@ -1,6 +1,6 @@
 <?php
     session_start();
-    Class Login extends Controller{
+    Class login extends Controller{
         function __construct(){ 
             parent::__construct();
             $this->view->mensaje = "";
