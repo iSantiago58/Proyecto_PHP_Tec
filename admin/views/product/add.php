@@ -15,13 +15,13 @@
                     <label><b>Categoria *</b></label>
                     <select  id="productCategory" class="form-control pointer">
                         <option value="">--- Seleccionar ---</option>
-                            <option value=""></option>
+                        <?php
+                         if(!empty($this->categories)){
+                            foreach($this->categories as $category) {?>
+                                <option value="<?=$category->categoriaId?>"><?=$category->categoriaNombre?></option>
+                                <?php }}?>
                     </select>
-                </div>
-
-               
-
-                
+                </div>       
             </div>
 
             <div class="row">
@@ -29,7 +29,6 @@
                     <label><b>Precio *</b></label>
                     <input id="productPrice" type="text" class="form-control">
                 </div>
-
 
                 <div class="col-sm-3">
                     <label><b>Stock *</b></label>
@@ -40,7 +39,7 @@
             <div class="row">
                 <div class="col-sm-10 col-md-offset-1">
                     <label><b>Descripción *</b></label>
-                    <textarea class="summernote form-control" data-height="200" data-lang="es-ES" id ="descripciproductDescriptionon" rows="8"></textarea>
+                    <textarea class="summernote form-control" data-height="200" data-lang="es-ES" id ="productDescription" rows="8"></textarea>
                 </div>
             </div>
 
@@ -59,11 +58,11 @@
                     </div>
                 <?php }?>
             </div>
-            <div id="errorAgregar"></div>
+            <div id="errorAddProduct"></div>
             <div class="row">
                 <div class="col-sm-6">
                     <footer>
-                        <button id="btn-enviar" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
+                        <button id="btn-send-product" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
                     </footer>
                 </div>
             </div>

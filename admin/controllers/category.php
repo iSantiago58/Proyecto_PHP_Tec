@@ -38,7 +38,7 @@
 
         function add_category_db(){
             $categoryName=$_POST['categoryName']; 
-            echo trim(putCategory($categoryName));
+            echo putCategory($categoryName);
 
         }
     
