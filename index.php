@@ -1,23 +1,10 @@
-<?php include("a_config.php"); ?>
-<!DOCTYPE html>
-<html>
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'].'/proyecto_php_tec/constants.php'; 
 
-<head>
-    <?php include("head-tag-contents.php"); ?>
-</head>
-
-<body>
-    <?php include("./includes/menu.php"); ?>
-
-        <?php 
-            if(isset($_SESSION["user"])){
-                include("./includes/page/default_index.php"); 
-            }else{
-                include("./includes/page/login.php"); 
-            }
-        ?>  
-</body>
-
-<?php include("footer.php"); ?>
-
-</html>
+    require_once LIBS.'controller.php'; 
+    require_once LIBS.'model.php'; 
+    require_once LIBS.'view.php'; 
+    require_once LIBS.'app.php'; 
+        $app = new App();
+    
+    ?>

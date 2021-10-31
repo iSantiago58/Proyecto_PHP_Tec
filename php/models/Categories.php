@@ -1,5 +1,4 @@
 <?php
-    header('Content-Type: application/json');
     include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/Connection.php");
 
     class Categoria {
@@ -8,8 +7,8 @@
         public $nombre;
 
         function __construct($idCategoria,$nombre) {
-            $this->categoriaid=$idCategoria;
-            $this->categorianombre=$nombre;
+            $this->idCategoria=$idCategoria;
+            $this->nombre=$nombre;
         }
          
     }

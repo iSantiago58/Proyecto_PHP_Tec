@@ -1,19 +1,18 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT']."/Proyecto_php_tec/php/Categories.php");
-    $list_categories = get_categories();
-    
+    $categorias = getCategorias();
     $htmlCategories="";
 
-    foreach($list_categories as $c){
+    foreach($categorias as $c){    
 
         $categorie = "<option value=".
-            $c->idCategoria.
+            $c->categoriaid.
             ">".
-            $c->nombre.
+            $c->categorianombre.
             "</option>";
         $htmlCategories = $htmlCategories. $categorie;
     }
-    
+
+       
 ?>
 
 
