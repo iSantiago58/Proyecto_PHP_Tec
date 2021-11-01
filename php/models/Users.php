@@ -22,8 +22,7 @@
     }
 
     
-        /*
-    public function getUsers(){
+    function getUsers(){
         $con = Connect();
         $sql = "SELECT * FROM usuario";
         $result = $con->query($sql);
@@ -39,7 +38,7 @@
         $con->close();
         return $usuarios;
     }
-*/
+
     /*
     function login(){
         if ($count > 0) {

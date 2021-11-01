@@ -96,4 +96,16 @@
         return $productos;
     }
 
+    function updateProductStock($productoid, $cantidad){
+        $con = Connect();
+        $sql = "update producto set stock = (stock + $cantidad)
+                where productoid = productoid";
+        $ok = $con->query($sql);
+        $con->close();
+        if ($ok){
+            return true;
+        }
+        return false;
+    }
+
 ?>

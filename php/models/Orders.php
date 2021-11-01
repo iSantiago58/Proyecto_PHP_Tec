@@ -90,7 +90,7 @@
             $result = $con->query($sql);
         }
         $con->close();
-        if ($result == true){
+        if($result == true) {
             return true;   
         } else {
             return false;
@@ -107,17 +107,110 @@
         $imp = $pedido->$importetotal;
 
         $con = Connect();
-        $sql = "INSERT INTO pedido (pedidoid, fechacompra, direccionenvio, direccionenvio, direccionfacturacion, feedback, importetotal)
-                VALUES ($id, '$fchCompra', '$dirEnvio', '$dirFact', '$feedb', $imp)";
+        $sql = "INSERT INTO pedido (fechacompra, direccionenvio, direccionenvio, direccionfacturacion, feedback, importetotal)
+                VALUES ('$fchCompra', '$dirEnvio', '$dirFact', '$feedb', $imp)";
 
         $result = $con->query($sql);
+        $pedidoid = $con->insert_id;
         $con->close();
 
-        if ($result == true){
-            return true;   
+        if ($result == true) {
+            return $pedidoid;   
         } else {
+            return null;
+        }
+    }
+
+    function updateOrderById($pedidoid, $update){
+        $con = Connect();
+        $sql = "update pedido set $update where pedidoid = $pedidoid";
+        if ( $con->query($sql) ){
+            $con->close();
+            return true;
+        } else {
+            $con->close();
             return false;
         }
     }
 
+    function addOrderProduct($pedidoid, $productoid, $cantidad){
+        //PRE: existe producto con productoid = $productoid
+        //PRE: stock de producto >= $cantidad
+        //POST: invoca agregar producto/cantidad en línea
+        //POST: actualiza importetotal
+        //POST: devuelve true en caso de éxito y false en contrario
+        
+        $producto = getProductById($productoid)[0];
+        $pedidoLineas = getOrderLines($pedidoid);
+        if( count($pedidoLineas) == 0 ){
+            $pedidoLinea = new OrderLine($pedidoid, 1, $productoid, $producto->productoprecio, $cantidad);
+            $ok = setOrderLine($pedidoLinea);
+        }else {
+            $filter = "productoid = $productoid";
+            $pedidoLineas = getOrderLinesByFilter($filter);
+            if ( count($pedidoLineas) > 0 ) {
+                $pedidoLinea = $pedidoLineas[0];
+                $update = "precio = $producto->productoprecio, cantidad = (cantidad + $cantidad)";
+                $ok = updateOrderLineById($pedidoid, $pedidoLinea->pedidolineaid, $update); 
+            } else {
+                $pedidoLinea = new OrderLine($pedidoid, 1, $productoid, $producto->productoprecio, $cantidad);
+                $ok = setOrderLine($pedidoLinea);
+            }
+        }
+        if ( $ok ){
+            $update = "importetotal = (importetotal + ($producto->productoprecio * $cantidad))";
+            if( updateOrderById($pedidoid, $update) ) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    function removeOrderProduct($pedidoid, $productoid, $cantidad){
+        /**
+         * PRE: existe pedido con pedidoid = $pedidoid
+         * PRE: existe producto con productoid = $productoid
+         * PRE: existen líneas con productoid = $productoid
+         * PRE: la cantidad del producto en la línea siempre es >= $cantidad
+         */
+        /**
+         * POST: invoca quitar producto/cantidad en línea. si la línea queda con cantidad cero, se elimina
+         * POST: actualiza importetotal
+         * POST: se actualiza el stock del producto
+         * POST: devuelve true en caso de éxito y false en contrario
+         */
+        
+        //$producto = getProductById($productoid)[0];
+        $filter = "productoid = $productoid";
+        $pedidoLineas = getOrderLinesByFilter($filter);
+        $pedidoLinea = $pedidoLineas[0];
+        $ok = true;
+        if ($pedidoLinea->cantidad >= $cantidad) {
+            $ok = deleteOrderLine($pedidoLinea);
+        }else {
+            //ajustar cantidad en linea
+            $update = "cantidad = (cantidad - $cantidad)";
+            $ok = updateOrderLineById($pedidoid, $pedidoLinea->pedidolineaid, $update);
+        }
+        if ($ok) {
+            if (getOrderLines($pedidoId) > 0) {
+                $update = "importetotal = (importetotal - ($cantidad * $pedidoLinea->precio) )";
+                $ok = updateOrderById($pedidoid, $update);
+            }
+        }
+        if ($ok) {
+            return updateProductStock($productoid, (-1)*$cantidad);
+        }
+
+        return false;
+    }
+
+    function deleteOrderById($pedidoid){
+        $con = Connect();
+        $sql = "delete from pedido where pedidoid = $pedidoid";
+        $ok = $con->query($sql);
+        $con->close();
+        return $ok;
+    }
 ?>
