@@ -72,7 +72,7 @@
                                 </li>
 
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="<?php echo constant('URL').$_GET['url'];?>/logout" >Logout</a></li>
+                                <li><a href="<?php echo constant('URL').$_GET['url'];?>logout" >Logout</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -45,6 +45,24 @@
         return null;
     }
 
+    function setPayment($mediodepagonombre){
+        /**
+         * PRE: ninguna
+         */
+        /**
+         * POST: intenta insertar un nuevo medio de pago. si lo logra, devuelve el id. sino, devuelve null
+         */
+        $con = Connect();
+        $sql = "insert into mediodepago(mediodepagonombre) values('$mediodepagonombre')";
+        $ok = $con->query($sql);
+        $mediodepagoid = $con->insert_id;
+        $con->close();
 
+        if ($mediodepagoid > 0) {
+            return $mediodepagoid;
+        }
+
+        return null;
+    }
 
 ?>

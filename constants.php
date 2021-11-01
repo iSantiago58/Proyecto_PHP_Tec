@@ -1,5 +1,5 @@
 <?php
-define('URL', "http://localhost:81/proyecto_php_tec/");
+define('URL', $_SERVER['HTTP_HOST'].'/proyecto_php_tec/');
 
 define("BASE",$_SERVER['DOCUMENT_ROOT'].'/proyecto_php_tec/');
 define("PHP",BASE.'php/');

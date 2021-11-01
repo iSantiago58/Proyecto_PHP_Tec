@@ -16,7 +16,12 @@
         $link = Connect();
         $sql = "insert into categoria(categorianombre) values('$nombre')";
         $resultado = $link->query($sql);
+        $categoriaid = $link->insert_id;
         $link->close();
+        
+        if($categoriaid > 0){
+            return $categoriaid;
+        }
 
         return null;
     }
