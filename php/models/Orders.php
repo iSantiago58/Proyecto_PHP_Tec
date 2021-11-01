@@ -99,6 +99,7 @@
 
     function setOrder($pedido){
 
+        $id = $pedido->$pedidoid;
         $fchCompra = $pedido->$fechacompra;
         $dirEnvio = $pedido->$direccionenvio;
         $dirFact = $pedido->$direccionfacturacion;
