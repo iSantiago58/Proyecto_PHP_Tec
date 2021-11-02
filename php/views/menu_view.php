@@ -38,11 +38,11 @@
                                     </ul>
                                     <p class="minicart-total" id="cart-subtotal">SUBTOTAL: <span>0</span></p>
                                     <div class="minicart-button">
-                                        <a href="checkout.html"
+                                        <a href="<?php echo constant('URL');?>compra"
                                             class="li-button li-button-dark li-button-fullwidth li-button-sm">
-                                            <span>View Full Cart</span>
+                                            <span>Perfil</span>
                                         </a>
-                                        <a href="checkout.html" class="li-button li-button-fullwidth li-button-sm">
+                                        <a href="<?php echo constant('URL');?>compra" class="li-button li-button-fullwidth li-button-sm">
                                             <span>Checkout</span>
                                         </a>
                                     </div>

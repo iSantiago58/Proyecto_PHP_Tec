@@ -4,13 +4,44 @@
 var addToCart; // Here's the difference
 var loginUser; // Here's the difference
 var registerUser; // Here's the difference
+var comprar;
+
 
 
 $(document).ready(function () {
   registerUser = function (cedula, password, usuarionombre) {
 
   };
+  comprar = function () {
+    var redireccionar = true;
+    if ($("#selectCountry").text() == "") {
+      redirect = false;
+    }
 
+    if ($("#direccion_envio").text() == "") {
+      redirect = false;
+    }
+    if ($("#direccion_facturacion").text() == "") {
+      redirect = false;
+    }
+    if ($("#apartamento").text() == "") {
+      redirect = false;
+    }
+    if ($("#selectCountry").text() == "") {
+      redirect = false;
+    }
+    if ($("#selectCountry").text() == "") {
+      redirect = false;
+    }
+
+
+
+    if (redireccionar) {
+      window.location.href = url;
+    }
+
+    window.location.href = url;
+  };
 
 
 

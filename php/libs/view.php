@@ -7,9 +7,5 @@ class View{
     function render($nombre){
         require_once VIEWS.$nombre.'.php';
     }
-
-
-
 }
-
 ?>
