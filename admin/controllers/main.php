@@ -14,7 +14,6 @@
         }
 
         function loadModels(){
-            print_r("load models");
             $this->loadModel('category');
         }
 
