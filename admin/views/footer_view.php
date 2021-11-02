@@ -48,5 +48,6 @@
 		<!-- Mios -->
 		<script type="text/javascript" src="<?=PROJECT?>assets/js/categories.js"></script>
 		<script type="text/javascript" src="<?=PROJECT?>assets/js/product.js"></script>
+		<script type="text/javascript" src="<?=PROJECT?>assets/js/users.js"></script>
 	</body>
 </html>

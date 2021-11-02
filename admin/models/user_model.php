@@ -6,9 +6,14 @@ class UserModel {
     public $esHabilitado;
     public $cedula;
 
-    public function __construct(){}
+     function __construct($usuarioNombre,$esHabilitado,$cedula){
+        $this->$usuarioNombre=$usuarioNombre;
+        $this->$esHabilitado=$esHabilitado;
+        $this->$cedula=$cedula;
+    }
+}
 
-    public function allUsers(){
+     function allUsers(){
         $link = Connect();
         $sql = "SELECT * FROM usuario";
         $result = $link->query($sql);
@@ -22,12 +27,34 @@ class UserModel {
         } 
 
         $link->close();
-
         return $listUsuarios;
     }
 
 
-}
+    function existsUser($id){
+        $link = Connect();
+        $sql = "SELECT * FROM usuario WHERE cedula=$id";
+        $result = $link->query($sql);
+        $existe=false;
+        if($result->num_rows>0){
+            $existe=true;
+        }
+        $link->close();
+        return $existe;
+    }
+
+
+    function putUser($userName,$userId,$userPassword,$isAdmin){
+        if(!existsUser($userId)){
+            $link = Connect();
+            $sql = "INSERT INTO usuario(cedula, password, usuarionombre, eshabilitado, esadmin) VALUES ($userId,'$userPassword','$userName',1,'$isAdmin')";
+            return $link->query($sql);
+        }else{
+            return -1;
+        }
+    }
+
+
 
 
 ?>
