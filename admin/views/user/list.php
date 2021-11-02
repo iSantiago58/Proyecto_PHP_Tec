@@ -3,8 +3,8 @@
 		<h1>Usuarios</h1>
 	</header>
 	<div id="content" class="padding-20">
-		<?if(isset($msj)){
-			print $msj;
+	<?php if(isset($this->message)){
+			print_r( $this->message);
 		}?>
 		<div class="panel panel-default">
 			<div class="panel-body">
