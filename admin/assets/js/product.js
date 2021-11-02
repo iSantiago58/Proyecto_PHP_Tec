@@ -36,9 +36,8 @@ function addProduct() {
                 }
             });
         }
-
-
-
+    }else{
+        $('#errorAddProduct').html("<div class='alert alert-danger margin-bottom-30'>Los campos son obligatorios.</div>");
     }
 
 
