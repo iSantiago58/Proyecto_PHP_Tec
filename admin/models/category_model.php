@@ -15,18 +15,18 @@ class CategoryModel {
         $link = Connect();
         $sql = "SELECT * FROM categoria";
         $result = $link->query($sql);
-        $listUsuarios = [];
+        $listCategorias = [];
 
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $listUsuarios[] = new CategoryModel($row["categoriaid"],$row["categorianombre"]);
+                $listCategorias[] = new CategoryModel($row["categoriaid"],$row["categorianombre"]);
             }
         } 
 
         $link->close();
 
-        return $listUsuarios;
+        return $listCategorias;
     }
 
     function existsCategory($category){

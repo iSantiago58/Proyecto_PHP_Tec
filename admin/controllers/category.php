@@ -23,6 +23,7 @@
 	            }
 	        }
             $this->view->categories = allCategories(); 
+            print_r($this->view->categories);
             $this->view->render('header_view');
             $this->view->render('category/list');
             $this->view->render('footer_view');
