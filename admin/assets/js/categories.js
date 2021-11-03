@@ -23,3 +23,27 @@ function addCategory(){
     
     return false;
 }
+
+function editCategory(){
+    var categoryName=document.getElementById("categoryName").value;
+    var categoryId=document.getElementById("categoryId").value;
+   
+    if(categoryName!=''){
+        $.post(ruta+"category/edit_category_db",{
+            categoryName:categoryName,
+            categoryId:categoryId,
+        },function(respuesta){
+            if(respuesta){
+                window.location=ruta+"category?msj=editar"
+            }else{
+                $('#errorEditCategory').html("<div class='alert alert-danger margin-bottom-30'>Error. Intentá de nuevo</div>");
+                $('#btn-edit-category').css('display', '');
+            }
+        });
+
+    }else{
+        $('#errorEditCategory').html("<div class='alert alert-danger margin-bottom-30'>El nombre de la categoría no puede ser vacío.</div>");
+    }
+
+    return false;
+}

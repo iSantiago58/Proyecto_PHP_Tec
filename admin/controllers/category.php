@@ -42,6 +42,20 @@
             echo putCategory($categoryName);
 
         }
+
+        function edit($id){
+            $this->view->category=getCategoryById($id[0]);
+
+            $this->view->render('header_view');
+            $this->view->render('category/edit');
+            $this->view->render('footer_view');
+        }
+
+        function edit_category_db(){
+            $categoryName = $_POST['categoryName'];
+            $categoryId = $_POST['categoryId'];
+            echo editCategoty($categoryId,$categoryName);
+        }
     
 
     }
