@@ -29,6 +29,20 @@ class CategoryModel {
         return $listCategorias;
     }
 
+    function getCategoryById($id){
+        $con = Connect();
+        $sql = "SELECT * FROM categoria WHERE categoriaid = $id";
+        $result = $con->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return new CategoryModel(
+                    $row["categoriaid"],$row["categorianombre"]);
+            }
+        } 
+        $con->close();
+        return null;
+    }
+
     function existsCategory($category){
         $link = Connect();
         $sql = "select * from categoria where categorianombre = '$category' ";
@@ -54,6 +68,12 @@ class CategoryModel {
         }else{
             return -1;
         }
+    }
+
+    function editCategoty($categoryId,$categoryName){
+        $link = Connect();
+        $sql = "UPDATE categoria SET categorianombre = '$categoryName' WHERE categoriaid = $categoryId";
+        return $link->query($sql);
     }
 
     
