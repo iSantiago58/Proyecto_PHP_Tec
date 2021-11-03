@@ -76,9 +76,6 @@
             $userPassword = $_POST['userPassword'];
             echo editUser($userId,$userPassword,$userName);
         }
-    
-
     }
-
 
 ?>

@@ -25,7 +25,7 @@
 									  <tr>
 										<td><?=$category->categoriaNombre?></td>
 									
-										<td class="text-center"><a href="">Editar</a></td>
+										<td class="text-center"><a href="<?=PROJECT?>category/edit/<?=$category->categoriaId?>">Editar</a></td>
 									</tr>
 							<?php }} ?>
 						</tbody>
