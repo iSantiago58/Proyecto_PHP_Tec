@@ -43,6 +43,9 @@
 						<a class="dashboard" href="<?=PROJECT?>product">
 							<i class="main-icon fa fa fa-home"></i><span>Productos</span>
 						</a>
+						<a class="dashboard" href="<?=PROJECT?>order">
+							<i class="main-icon fa fa fa-home"></i><span>Compras</span>
+						</a>
 						</li>
 					</ul>
 				</nav>

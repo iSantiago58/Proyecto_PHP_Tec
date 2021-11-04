@@ -1,6 +1,6 @@
 <section id="middle">
 	<header id="page-header">
-		<h1>Agregar Usuario</h1>
+		<h1>Editar Usuario</h1>
 	</header>
 	<form onsubmit="return editUser()">
 		<div id="content" class="padding-20">
