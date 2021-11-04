@@ -1,4 +1,18 @@
-<?php $pathLogo=constant('URL')."images/menu/logo/"; ?>
+<?php 
+    $pathLogo=constant('URL')."images/menu/logo/";
+    
+ ?>
+
+<?php 
+if(isset($_SESSION["ci"])):
+     $carData = json_encode($this->car);
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fillCart(<?php echo $carData?>);
+        });
+    </script>
+<?php endif;  ?>
 
 <header class="li-header-4">
     <!-- Begin Header Middle Area -->
@@ -38,7 +52,7 @@
                                     </ul>
                                     <p class="minicart-total" id="cart-subtotal">SUBTOTAL: <span>0</span></p>
                                     <div class="minicart-button">
-                                        <a href="<?php echo constant('URL');?>compra"
+                                        <a href="<?php echo constant('URL')."perfil";?>"
                                             class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                             <span>Perfil</span>
                                         </a>
@@ -68,13 +82,16 @@
                     <div class="hb-menu">
                         <nav>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
-
+                                <li class="megamenu-holder"><a href="<?php echo constant('URL')."main";?>">Shop</a>
                                 </li>
 
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="<?php echo constant('URL')."about";?>">Sobre nosotros</a></li>
+                                <?php if(isset($_SESSION["ci"])): ?>
                                 <li><a href="<?php echo $this->pagePath;?>Logout">Logout</a></li>
+                                <?php else: ?>
+                                <li><a href="<?php echo constant('URL')."login";?>">Login</a></li>
+                                <?php endif;  ?>
+                                
                             </ul>
                         </nav>
                     </div>

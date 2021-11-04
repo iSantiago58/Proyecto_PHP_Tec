@@ -5,7 +5,7 @@ var addToCart; // Here's the difference
 var loginUser; // Here's the difference
 var registerUser; // Here's the difference
 var comprar;
-
+var fillCart;
 
 
 $(document).ready(function () {
@@ -45,6 +45,73 @@ $(document).ready(function () {
 
 
 
+  fillCart = function (cart) {
+    console.log(cart);
+
+    cart.forEach(product => {
+      var productoprecio = product["precio"];
+      var productoid = product["productoid"];
+      var productonombre = product["productonombre"];
+      var cantidad = product["cantidad"];
+      var productodescripcion = product["productodescripcion"];
+
+      var sumaPrecio = cantidad * productoprecio;
+      console.log(product);
+      var $newItem = $(`
+      <li id="cart-content-${productoid}">
+          <a href="single-product.html" class="minicart-product-image">
+              <img class ="cart-list-item" src="images/product/small-size/1.jpg" alt="cart products">
+          </a>
+          <div class="minicart-product-details">
+              <h6><a href="single-product.html">${productonombre} x ${cantidad}</a></h6>
+              <span>${sumaPrecio}</span>
+          </div>
+          <button class="close" onClick="removeItem(${productoid},${sumaPrecio});">
+              <i class="fa fa-close"></i>
+          </button>
+      </li>`);
+
+      $("#cart-content").append($newItem);
+      var span = $("#cart-subtotal > span");
+      console.log(span);
+      console.log(span.text());
+
+      var valueSubtotal = parseInt(span.text(), 10);
+      valueSubtotal = valueSubtotal + sumaPrecio;
+      span.text(valueSubtotal);
+      var span1 = $(".cart-item-count");
+      var value1 = parseInt(span1.text(), 10);
+      value1 = value1 + 1;
+
+      console.log("cat values" + value1);
+
+
+      var priceOver = $(".item-text");
+      priceOver.text(valueSubtotal);
+      priceOver.append(`<span class="cart-item-count">${value1}</span>`);
+
+
+      //cambia la cantidad de productos 
+
+      var idnuevo = ".cantidad" + productoid;
+      var cantProduct = $(idnuevo);
+      console.log(cantProduct);
+      var valueCant = parseInt(cantProduct.first().text(), 10);
+      console.log(valueCant);
+
+      valueCant = valueCant - 1;
+      if (valueCant == 0) {
+        cantProduct.text("vendido");
+        cantProduct.addClass("stickersold").removeClass("sticker");
+        let interactProduct = $(".interact" + productoid);
+        $(".interact" + productoid).remove();
+
+      } else {
+        cantProduct.text(valueCant);
+      }
+
+    });
+  };
 
   //carro
   addToCart = function (
@@ -54,8 +121,27 @@ $(document).ready(function () {
     productoprecio,
     stock,
     categoriaid
+    , ci
   ) {
-    var $newItem = $(`
+
+    console.log("EJECUTA 1 VEZ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+    var urlAjax = 'http://localhost:81/proyecto_php_tec/includes/ajaxFunctions.php';
+    var dataJson = {
+      "addToCart": "set",
+      "ci": ci,
+      "precio": productoprecio,
+      "idProduct": productoid,
+    };
+    $.ajax({
+      url: urlAjax,
+      type: 'post',
+      dataType: "json",
+      data: dataJson,
+      success: function (response) {
+        console.log(response);
+
+        var $newItem = $(`
     <li id="cart-content-${productoid}">
         <a href="single-product.html" class="minicart-product-image">
             <img class ="cart-list-item" src="images/product/small-size/1.jpg" alt="cart products">
@@ -69,46 +155,53 @@ $(document).ready(function () {
         </button>
     </li>`);
 
-    $("#cart-content").append($newItem);
-    var span = $("#cart-subtotal > span");
-    console.log(span);
-    console.log(span.text());
+        $("#cart-content").append($newItem);
+        var span = $("#cart-subtotal > span");
+        console.log(span);
+        console.log(span.text());
 
-    var valueSubtotal = parseInt(span.text(), 10);
-    valueSubtotal = valueSubtotal + productoprecio;
-    span.text(valueSubtotal);
-    var span1 = $(".cart-item-count");
-    var value1 = parseInt(span1.text(), 10);
-    value1 = value1 + 1;
+        var valueSubtotal = parseInt(span.text(), 10);
+        valueSubtotal = valueSubtotal + productoprecio;
+        span.text(valueSubtotal);
+        var span1 = $(".cart-item-count");
+        var value1 = parseInt(span1.text(), 10);
+        value1 = value1 + 1;
 
-    console.log("cat values" + value1);
-
-
-    var priceOver = $(".item-text");
-    priceOver.text(valueSubtotal);
-    priceOver.append(`<span class="cart-item-count">${value1}</span>`);
+        console.log("cat values" + value1);
 
 
-    //cambia la cantidad de productos 
+        var priceOver = $(".item-text");
+        priceOver.text(valueSubtotal);
+        priceOver.append(`<span class="cart-item-count">${value1}</span>`);
 
-    var idnuevo = ".cantidad" + productoid;
-    var cantProduct = $(idnuevo);
-    console.log(cantProduct);
-    var valueCant = parseInt(cantProduct.first().text(), 10);
-    console.log(valueCant);
 
-    valueCant = valueCant - 1;
-    if (valueCant == 0) {
-      cantProduct.text("vendido");
-      cantProduct.addClass("stickersold").removeClass("sticker");
-      let interactProduct = $(".interact" + productoid);
-      $(".interact" + productoid).remove();
+        //cambia la cantidad de productos 
 
-    } else {
-      cantProduct.text(valueCant);
-    }
+        var idnuevo = ".cantidad" + productoid;
+        var cantProduct = $(idnuevo);
+        console.log(cantProduct);
+        var valueCant = parseInt(cantProduct.first().text(), 10);
+        console.log(valueCant);
 
-    console.log("cantidad :" + cantProduct.text());
+        valueCant = valueCant - 1;
+        if (valueCant == 0) {
+          cantProduct.text("vendido");
+          cantProduct.addClass("stickersold").removeClass("sticker");
+          let interactProduct = $(".interact" + productoid);
+          $(".interact" + productoid).remove();
+
+        } else {
+          cantProduct.text(valueCant);
+        }
+
+        console.log("cantidad :" + cantProduct.text());
+      }
+    },
+    );
+
+
+
+
 
 
   };

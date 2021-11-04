@@ -8,9 +8,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="country-select clearfix">
-                                    <label>País <span class="required">*</span></label>
+                                    <label>Metodo de pago <span class="required">*</span></label>
                                     <select id="selectCountry" class="nice-select wide">
-                                        <option data-display="Bangladesh">Uruguay</option>
+                                        <option data-display="pago">Uruguay</option>
                                         <option value="uk">Argentína</option>
                                         <option value="rou">Brazil</option>
                                         <option value="fr">Chile</option>
@@ -27,43 +27,6 @@
                                 <div class="checkout-form-list">
                                     <label>Direccion de facturación <span class="required">*</span></label>
                                     <input id="direccion_facturacion" placeholder="Calles" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <input id="apartamento" placeholder="Apartamento o Nro de puerta" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>Departamento <span class="required">*</span></label>
-                                    <select id="deparatamento" class="nice-select wide selectpicker mh" style="max-height: 100px;">
-                                        <option data-display="Montevideo">Montevideo</option>
-                                        <option value="Canelones">Canelones</option>
-                                        <option value="Artigas">Artigas</option>
-                                        <option value="Cerro Largo">Cerro Largo</option>
-                                        <option value="Colonia">Colonia</option>
-                                        <option value="Durazno">Durazno</option>
-                                        <option value="Flores">Flores</option>
-                                        <option value="Florida">Florida</option>
-                                        <option value="Lavalleja">Lavalleja</option>
-                                        <option value="Maldonado">Maldonado</option>
-                                        <option value="Paysandú">Paysandú</option>
-                                        <option value="Río Negro">Río Negro</option>
-                                        <option value="Rivera">Rivera</option>
-                                        <option value="Rocha">Rocha</option>
-                                        <option value="Salto">Salto</option>
-                                        <option value="San José">San José</option>
-                                        <option value="Soriano">Soriano</option>
-                                        <option value="Tacuarembó">Tacuarembó</option>
-                                        <option value="Treinta y Tres">Treinta y Tres</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Ciudad <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
                                 </div>
                             </div>
                         </div>

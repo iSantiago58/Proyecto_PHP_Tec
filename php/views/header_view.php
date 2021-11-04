@@ -36,6 +36,9 @@
         <link rel="stylesheet" href="<?php echo URL;?>style.css">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="<?php echo URL;?>css/responsive.css">
+	    
+		<script src="<?php echo URL;?>js/vendor/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="<?php echo URL;?>js/index.js"></script>
         <!-- Modernizr js -->
     </head>
     <body>

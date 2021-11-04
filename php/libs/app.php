@@ -8,9 +8,9 @@ class App{
         $url = explode('/', $url);
 
         if(empty($url[0])){
-            $archivoController = CONTROLLERS.'/Login.php';
+            $archivoController = CONTROLLERS.'/main.php';
             require $archivoController;
-            $controller = new Login();
+            $controller = new Main();
             $controller->loadModels();
 
             $controller->render();

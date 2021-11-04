@@ -1,9 +1,6 @@
 <?php
 $categorias = $this->categories;
-
 $productos = $this->products;
-
-
 $htmlContent ="";
 $products = "";
 $htmlArrayProduct= array();
@@ -16,12 +13,10 @@ foreach($productos as $key => $p){
     $esActivoProd=$p->esActivoProd;
     $categoriaProd=$p->categoriaProd;
 
-
     $htmlStock ="";
     $htmlAction ="";
     $pathModal =$this->pagePath."modal";
-
-    if($stock==0){
+    if($stock==0 ){
         $htmlStock =<<<term
         <span class="stickersold cantidad${idProducto}">${stock}</span>
         term;
@@ -37,13 +32,22 @@ foreach($productos as $key => $p){
         $htmlAction=<<<term
         <div class="add-actions interact${idProducto}">
                 <ul class="add-actions-link">
-                    <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd});">
-                    <a href="${urlFillCart}">Add to cart</a></li>
-                    <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+        term;
+
+        if(isset($_SESSION["ci"])){
+            $ci = $_SESSION["ci"];
+            $htmlAction=$htmlAction . <<<term
+            <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd},${ci});">
+            <a>Add to cart</a></li>
+            term;
+
+        }
+        $htmlAction=$htmlAction . <<<term
                     <li><a class="quick-view" href="${urlModaCart}"><i class="fa fa-eye"></i></a></li>
                 </ul>
             </div>
         term;
+        
     }
     $pathImg=constant('URL')."images/product/large-size/";
     $htmlProduct =<<<term
