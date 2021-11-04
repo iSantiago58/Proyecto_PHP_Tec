@@ -5,8 +5,13 @@
             parent::__construct();
             $this->view->mensaje = "";
             $this->view->pagePath = constant('URL')."login/";
+            $this->view->car=[];
+
         }
         function render(){
+            if(isset($_SESSION["ci"])){
+                $this->view->car = getCartProducts($_SESSION["ci"]);
+            }
             $this->view->render('header_view');
             $this->view->render('menu_view');
             $this->view->render('about/index');
@@ -14,6 +19,8 @@
         }
 
         function loadModels(){
+            $this->loadModel('Orders');
+
         }
 
         function goToMain(){
