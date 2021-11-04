@@ -36,7 +36,7 @@
                 $this->view->mensaje = $mensaje;
                 $this->render();
             }else{
-                $_SESSION["ci"] = "usuario";
+                $_SESSION["ci"] = $usuario;
                 $mensaje = "LOGUEADO";
                 $this->goToMain();
             }
