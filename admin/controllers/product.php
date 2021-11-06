@@ -136,6 +136,25 @@
             print_r(putProduct($productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray));
         }
 
+        function edit($id){
+            $this->view->products=getProductById($id[0]);
+            $this->view->categories= allCategories();
+            print_r($this->view->products);
+            $this->view->render('header_view');
+            $this->view->render('product/edit');
+            $this->view->render('footer_view');
+        }
+
+        function edit_product_db(){
+            $productId =$_POST['productId']; 
+            $productName=$_POST['productName']; 
+            $productCategory=$_POST['productCategory']; 
+            $productPrice=$_POST['productPrice']; 
+            $productStock=$_POST['productStock']; 
+            $productDescription=$_POST['productDescription']; 
+            echo editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription);
+        }
+
     }
 
 

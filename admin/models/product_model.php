@@ -33,13 +33,30 @@ function allProducts(){
         // output data of each row
         while($row = $result->fetch_assoc()) {
             $images=getImages($row["productoid"]);
-            $listProduct[] = new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],$row["productoesactivo"],$row["categoriaid"],$images);
+            $listProduct[] = new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],
+                                                $row["productoesactivo"],$row["categoriaid"],$images);
         }
     } 
 
     $link->close();
     return $listProduct;
 }
+
+function getProductById($id){
+    $con = Connect();
+    $sql = "SELECT * FROM producto WHERE productoid = $id";
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $images=getImages($row["productoid"]);
+        while($row = $result->fetch_assoc()) {
+            return new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],
+                                        $row["productoesactivo"],$row["categoriaid"],$images);
+        }
+    } 
+    $con->close();
+    return null;
+}
+
 
 function existsProduct($name){
     $link = Connect();
@@ -91,10 +108,22 @@ function putProduct($productName,$productCategory,$productPrice,$productStock,$p
     }
    }
 
-   function getImages($productId){
-    $files=glob(BASE_URL.'productImages/'.$productId.'/*');
-    return $files;
-}
+    function getImages($productId){
+        $files=glob(BASE_URL.'productImages/'.$productId.'/*');
+        return $files;
+    }
+
+    function editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription){
+        $link = Connect();
+        $sql = "UPDATE producto 
+                    SET productonombre = '$productName', 
+                        productodescripcion = '$productDescription',
+                        productoprecio = $productPrice,
+                        stock = $productStock,
+                        categoriaid = '$productCategory'
+                    WHERE productoid = $productId";
+        return $link->query($sql);
+    }
 
 
 
