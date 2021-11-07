@@ -29,7 +29,7 @@
                                 foreach($this->products as $product){
                                     $img=explode("/", $product->images['0'] );
                                     $imgName=$img[7];
-                                    $imgPath=PROJECT.'productImages/'.$product->productId.'/'.$imgName;        
+                                    $imgPath=IMG_URL.$product->productId.'/'.$imgName;        
                                 ?>
                                     <tr>
                                         <td><?=$product->productName?></td>
@@ -40,11 +40,11 @@
                                         </td>
                                         <td class="text-center">
                                             <label class="switch switch-primary">
-                                                <input type="checkbox" <?php if($product->productActive==1){?>checked<?php }?> onclick="changeProductStatus()">
+                                                <input type="checkbox" <?php if($product->productActive==1){?>checked<?php }?> onclick="changeProductStatus(<?=$product->productId?>)">
                                                 <span class="switch-label" data-on="SI" data-off="NO"></span>
                                             </label>
                                         </td>
-                                        <td class="text-center"><a href="">Editar</a></td>
+                                        <td class="text-center"><a href="<?=PROJECT?>product/edit/<?=$product->productId?>">Editar</a></td>
                                     
                                     </tr>
                                <?php }
