@@ -41,7 +41,7 @@
 
         function uploadPhotoTmp($orden, $id=""){
             // if(isset($_SESSION['usr_adm_login'])){
-                require_once('inc/slim.php');
+                require_once(BASE_URL.'controllers/inc/slim.php');
                 try{
                     $images=Slim::getImages("productPhoto");
                 }catch(Exception $e){
