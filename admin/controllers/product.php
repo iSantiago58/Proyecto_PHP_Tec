@@ -41,7 +41,7 @@
 
         function uploadPhotoTmp($orden, $id=""){
             // if(isset($_SESSION['usr_adm_login'])){
-                require_once('inc/slim.php');
+                require_once(BASE_URL.'controllers/inc/slim.php');
                 try{
                     $images=Slim::getImages("productPhoto");
                 }catch(Exception $e){
@@ -134,6 +134,33 @@
             $productDescription=$_POST['productDescription']; 
             $imagesArray=$_POST['imagesArray']; 
             print_r(putProduct($productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray));
+        }
+
+        function edit($id){
+            $this->view->products=getProductById($id[0]);
+            $this->view->categories= allCategories();
+            $this->view->render('header_view');
+            $this->view->render('product/edit');
+            $this->view->render('footer_view');
+        }
+
+        function edit_product_db(){
+            $productId =$_POST['productId']; 
+            $productName=$_POST['productName']; 
+            $productCategory=$_POST['productCategory']; 
+            $productPrice=$_POST['productPrice']; 
+            $productStock=$_POST['productStock']; 
+            $productDescription=$_POST['productDescription']; 
+            $imagesArray=$_POST['imagesArray']; 
+            $newImagesArray=isset($_POST['newImagesArray']) ? $_POST['newImagesArray'] : ""; 
+
+            print_r(editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray,$newImagesArray));
+        }
+
+        function update_product_state(){
+            $id = $_POST['id'];
+            echo updateProductState($id);
+
         }
 
     }
