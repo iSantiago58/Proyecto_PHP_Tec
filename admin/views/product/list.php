@@ -40,7 +40,7 @@
                                         </td>
                                         <td class="text-center">
                                             <label class="switch switch-primary">
-                                                <input type="checkbox" <?php if($product->productActive==1){?>checked<?php }?> onclick="changeProductStatus()">
+                                                <input type="checkbox" <?php if($product->productActive==1){?>checked<?php }?> onclick="changeProductStatus(<?=$product->productId?>)">
                                                 <span class="switch-label" data-on="SI" data-off="NO"></span>
                                             </label>
                                         </td>

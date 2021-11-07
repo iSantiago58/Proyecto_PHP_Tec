@@ -157,6 +157,12 @@
             print_r(editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray,$newImagesArray));
         }
 
+        function update_product_state(){
+            $id = $_POST['id'];
+            echo updateProductState($id);
+
+        }
+
     }
 
 

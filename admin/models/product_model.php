@@ -161,6 +161,43 @@ function putProduct($productName,$productCategory,$productPrice,$productStock,$p
         return false;
     }
 
+    function updateProductState($id){
+        $link = Connect();
+        $sql = "UPDATE producto SET productoesactivo = CASE WHEN productoesactivo = 0 then 1 WHEN productoesactivo = 1 then 0 ELSE productoesactivo END WHERE productoid = $id";
+        $link->query($sql);
+
+        $sql2="SELECT * FROM producto WHERE productoid=$id";
+        $result=$link->query($sql2);
+        $esActivo=0;
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+               $esActivo= $row["productoesactivo"];
+            }
+        } 
+        if(!$esActivo){
+            //pedidos que tengan el producto desactivado y que la compra no este finalizada
+            $query="SELECT DISTINCT(pl.pedidoid) FROM pedidolinea pl INNER JOIN usuariopedido up ON 
+            pl.pedidoid=up.pedidoid WHERE up.esfinalizado=0 AND pl.productoid=$id";
+            $result=$link->query($query);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                   $idPedido=$row["pedidoid"];
+                   $query2="DELETE FROM pedidolinea WHERE pedidoid=$idPedido AND productoid=$id";
+                   $resultDelete=$link->query($query2);
+                   $query3="SELECT * FROM pedidolinea WHERE pedidoid=$idPedido";
+                   $resultSelect=$link->query($query3);
+                   if ($resultSelect->num_rows == 0) {
+                       $deteleUsuarioPedido="DELETE FROM usuariopedido WHERE pedidoid=$idPedido";
+                       $resultDeleteUsuarioPedido=$link->query($deteleUsuarioPedido);
+                       $detelePedido="DELETE FROM pedido WHERE pedidoid=$idPedido";
+                       $resultDeletePedido=$link->query($detelePedido);
+                   }
+                }
+            } 
+        }
+        return true;
+    }
+
 
 
 ?>

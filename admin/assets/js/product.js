@@ -55,10 +55,18 @@ function removePhoto(data){
 }
 
 
-function changeProductStatus(){
-
-
+function changeProductStatus(id){
+    $.post(ruta+"product/update_product_state",{
+        id:id,
+    },function(respuesta){
+        if(respuesta){
+            alert('Estado cambiado correctamente.');
+        }else{
+            alert('Error al cambiar el estado.');
+        }
+    });
     return false;
+
 }
 
 
