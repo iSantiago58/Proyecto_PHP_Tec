@@ -49,13 +49,19 @@
                         <div class="slim" data-service="<?=PROJECT?>product/uploadPhotoTmp/<?=$i?>" data-max-file-size="10" data-button-edit-label="Editar" data-button-remove-label="Borrar"
                              data-button-upload-label="Guardar" data-button-cancel-label="Cancelar" data-button-confirm-label="Confirmar"
                              data-button-edit-title="Editar" data-button-remove-title="Borrar" data-button-upload-title="Guardar" data-button-cancel-title="Cancelar" data-button-confirm-title="Confirmar"
-                             data-status-upload-success="Imagen guardada." data-did-upload="hiddenField" data-did-remove="removePhoto" data-push="true"
+                             data-status-upload-success="Imagen guardada." data-did-upload="hiddenField" data-did-remove="removePhotoOnEdit" data-push="true"
                             data-ratio="1:1" data-force-type="jpeg">
-                            <input type="file" name="productPhoto[]">
-                            
-
+                            <input type="file" name="productPhoto[]" value="<?php if(isset($this->products->images[$i-1]) && !empty($this->products->images[$i-1])){echo  $this->products->images[$i-1];}?>">
+                            <?php if(isset($this->products->images[$i-1]) && !empty($this->products->images[$i-1])){
+                                 $img=explode("/", $this->products->images[$i-1] );
+                                 $imgName=$img[7];
+                                 $imgPath=IMG_URL.$this->products->productId.'/'.$imgName;    
+                                ?>
+                                <img src="<?=$imgPath?>" >
+                            <?php }?>
                         </div>
-                        <input type="hidden" id="uploadProductPhoto<?=$i?>">
+                        <input name="<?php if(isset($this->products->images[$i-1]) && !empty($this->products->images[$i-1])){echo  $imgName;}?>" type="hidden" id="uploadProductPhoto<?=$i-1?>" value="<?php if(isset($this->products->images[$i-1]) && !empty($this->products->images[$i-1])){echo  $this->products->images[$i-1];}?>">
+                        <input type="hidden" name="editPhoto[]" value="<?php if(isset($this->products->images[$i-1]) && !empty($this->products->images[$i-1])){echo  $this->products->images[$i-1];}else{ echo '';}?>">
                     </div>
                 <?php }?>
             </div>

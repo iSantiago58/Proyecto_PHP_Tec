@@ -47,7 +47,7 @@ function getProductById($id){
     $sql = "SELECT * FROM producto WHERE productoid = $id";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
-        $images=getImages($row["productoid"]);
+        $images=getImages($id);
         while($row = $result->fetch_assoc()) {
             return new ProductModel($row["productoid"],$row["productonombre"],$row["productodescripcion"],$row["productoprecio"],$row["stock"],
                                         $row["productoesactivo"],$row["categoriaid"],$images);
@@ -88,7 +88,7 @@ function putProduct($productName,$productCategory,$productPrice,$productStock,$p
 
 
         foreach($imagesArray as $img){
-           $i = json_decode($img)->file;
+            $i = json_decode($img)->file;
             $rutaTemp=BASE_URL."imgTemp/".$i;
             $ruta=BASE_URL."productImages/".$lastIdInserted."/".$i;
             if(copy($rutaTemp, $ruta)){
@@ -113,7 +113,7 @@ function putProduct($productName,$productCategory,$productPrice,$productStock,$p
         return $files;
     }
 
-    function editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription){
+    function editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray,$newImagesArray){
         $link = Connect();
         $sql = "UPDATE producto 
                     SET productonombre = '$productName', 
@@ -122,7 +122,43 @@ function putProduct($productName,$productCategory,$productPrice,$productStock,$p
                         stock = $productStock,
                         categoriaid = '$productCategory'
                     WHERE productoid = $productId";
-        return $link->query($sql);
+
+        $link->query($sql);
+        $images=getImages($productId);
+
+        foreach($images as $img){
+            if(!findInArray($img, $imagesArray)){
+               //se borra la imagen del servidor
+               unlink($img);
+            }
+        }
+       
+        if($newImagesArray!='' && count($newImagesArray)>0){
+            
+            foreach($newImagesArray as $newImg){
+                $i = json_decode($newImg)->file;
+            
+                $rutaTemp=BASE_URL."imgTemp/".$i;
+                $ruta=BASE_URL."productImages/".$productId."/".$i;
+                if(copy($rutaTemp, $ruta)){
+                    $file=BASE_URL.'imgTemp/'.$i;
+                    unlink($file);
+                    }
+                }
+            }
+        
+        return true;
+
+        
+    }
+
+    function findInArray($search, $array){
+        foreach($array as $element){
+            if($element==$search){
+                return true;
+            }
+        }
+        return false;
     }
 
 

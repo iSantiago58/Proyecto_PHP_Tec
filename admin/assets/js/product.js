@@ -61,6 +61,16 @@ function changeProductStatus(){
     return false;
 }
 
+
+function removePhotoOnEdit(data, info) {
+    var id = document.getElementsByName(data['input'][['name']])[0].id;
+    id.value="";
+    document.getElementsByName(data['input'][['name']])[0].value="";
+
+}
+
+
+
 function editProduct(){
     var productId=document.getElementById("productId").value;
     var productName=document.getElementById("productName").value;
@@ -68,23 +78,43 @@ function editProduct(){
     var productPrice=document.getElementById("productPrice").value;
     var productStock=document.getElementById("productStock").value;
     var productDescription=document.getElementById("productDescription").value;
+    var images = document.getElementsByName("editPhoto[]");
+    var newImages= document.getElementsByName("productPhoto[]");
+    var newImagesArray=[];
+    var imagesArray = [];
+    for (i=0; i<images.length;i++ ){
+        if(document.getElementById('uploadProductPhoto'+i).value!='' ){
+            imagesArray.push(images.item(i).value);
+        }
+    }
+    for (i=0; i<newImages.length;i++ ){
+        if(newImages.item(i).value != '' ){
+            newImagesArray.push(newImages.item(i).value);
+        }
+    }
    
-    if(productName!='' && productCategory!=''){
-        $.post(ruta+"product/edit_product_db",{
-            productId:productId,
-            productName:productName,
-            productCategory:productCategory,
-            productPrice:productPrice,
-            productStock:productStock,
-            productDescription:productDescription,
-        },function(respuesta){
-            if(respuesta){
-                window.location=ruta+"product?msj=editar"
-            }else{
-                $('#errorEditProduct').html("<div class='alert alert-danger margin-bottom-30'>Error. Intentá de nuevo</div>");
-                $('#btn-edit-product').css('display', '');
-            }
-        });
+    if(productName!='' && productCategory!='' && productPrice!='' && productStock!='' && productDescription!=''){
+        if(imagesArray.length+newImagesArray.length ==0){
+            $('#errorEditProduct').html("<div class='alert alert-danger margin-bottom-30'>Se deben cargar al menos una imagen</div>");
+        }else{
+            $.post(ruta+"product/edit_product_db",{
+                productId:productId,
+                productName:productName,
+                productCategory:productCategory,
+                productPrice:productPrice,
+                productStock:productStock,
+                productDescription:productDescription,
+                imagesArray:imagesArray,
+                newImagesArray:newImagesArray,
+            },function(respuesta){
+                if(respuesta){
+                    window.location=ruta+"product?msj=editar"
+                }else{
+                    $('#errorEditProduct').html("<div class='alert alert-danger margin-bottom-30'>Error. Intentá de nuevo</div>");
+                    $('#btn-edit-product').css('display', '');
+                }
+            });
+        }
 
     }else{
         $('#errorEditProduct').html("<div class='alert alert-danger margin-bottom-30'>Todos los campos son obligatorios.</div>");

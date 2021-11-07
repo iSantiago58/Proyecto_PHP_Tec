@@ -139,7 +139,6 @@
         function edit($id){
             $this->view->products=getProductById($id[0]);
             $this->view->categories= allCategories();
-            print_r($this->view->products);
             $this->view->render('header_view');
             $this->view->render('product/edit');
             $this->view->render('footer_view');
@@ -152,7 +151,10 @@
             $productPrice=$_POST['productPrice']; 
             $productStock=$_POST['productStock']; 
             $productDescription=$_POST['productDescription']; 
-            echo editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription);
+            $imagesArray=$_POST['imagesArray']; 
+            $newImagesArray=isset($_POST['newImagesArray']) ? $_POST['newImagesArray'] : ""; 
+
+            print_r(editProduct($productId,$productName,$productCategory,$productPrice,$productStock,$productDescription,$imagesArray,$newImagesArray));
         }
 
     }
