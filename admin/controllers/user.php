@@ -6,6 +6,7 @@
             parent::__construct();
             $this->view->message=null;
             $this->view->users=null;
+            $this->view->place=null;
         }
 
         function loadModels(){
@@ -24,7 +25,7 @@
 	            }
 	        }
             $this->view->users=allUsers();
-            
+            $this->view->place="user";
             $this->view->render('header_view');
             $this->view->render('user/list');
             $this->view->render('footer_view');
@@ -36,6 +37,7 @@
         }
 
         function add(){
+            $this->view->place="user";
             $this->view->render('header_view');
             $this->view->render('user/add');
             $this->view->render('footer_view');
@@ -62,7 +64,7 @@
 
         function edit($id){
             $this->view->users=getUserById($id[0]);
-
+            $this->view->place="user";
             $this->view->render('header_view');
             $this->view->render('user/edit');
             $this->view->render('footer_view');

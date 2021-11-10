@@ -28,24 +28,30 @@
 			<aside id="aside">
 				<nav id="sideNav">
 					<ul class="nav nav-list">
-						<li>
+						<li <?php if(isset($this->place) && $this->place=="home"){?> class="active" <?php }?> >
 							<a class="dashboard" href="<?=PROJECT?>">
 								<i class="main-icon fa fa fa-home"></i><span>Inicio</span>
 							</a>
 						</li>
-						<li>
-						<a class="dashboard" href="<?=PROJECT?>user">
-							<i class="main-icon fa fa fa-home"></i><span>Usuarios</span>
-						</a>
-						<a class="dashboard" href="<?=PROJECT?>category">
-							<i class="main-icon fa fa fa-home"></i><span>Categorias</span>
-						</a>
-						<a class="dashboard" href="<?=PROJECT?>product">
-							<i class="main-icon fa fa fa-home"></i><span>Productos</span>
-						</a>
-						<a class="dashboard" href="<?=PROJECT?>order">
-							<i class="main-icon fa fa fa-home"></i><span>Compras</span>
-						</a>
+						<li <?php if(isset($this->place) && $this->place=="user"){?> class="active" <?php }?>>
+							<a class="dashboard" href="<?=PROJECT?>user">
+								<i class="main-icon fa fa fa-user"></i><span>Usuarios</span>
+							</a>
+						</li>
+						<li <?php if(isset($this->place) && $this->place=="categories"){?> class="active" <?php }?>>
+							<a class="dashboard" href="<?=PROJECT?>category">
+								<i class="main-icon fa fa fa-list"></i><span>Categorias</span>
+							</a>
+						</li>
+						<li <?php if(isset($this->place) && $this->place=="product"){?> class="active" <?php }?>>
+							<a class="dashboard" href="<?=PROJECT?>product">
+								<i class="main-icon fa fa fa-list-alt"></i><span>Productos</span>
+							</a>
+						</li>
+						<li <?php if(isset($this->place) && $this->place=="order"){?> class="active" <?php }?>>
+							<a class="dashboard" href="<?=PROJECT?>order">
+								<i class="main-icon fa fa fa-shopping-cart"></i><span>Compras</span>
+							</a>
 						</li>
 					</ul>
 				</nav>
@@ -53,14 +59,12 @@
 			</aside>
 			<header id="header">
 				<button id="mobileMenuBtn"></button>
-				<span class="logo pull-left">
-					<img src="" alt="admin panel" height="35">
-				</span>
+				
 				<nav>
 					<ul class="nav pull-right">
 						<li class="dropdown pull-left">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-								<img class="user-avatar" alt="" src="assets/images/noavatar.jpg" height="34">
+								<img class="user-avatar" alt="" src="<?=PROJECT?>assets/images/noavatar.png" height="34">
 								<span class="user-name">
 									<span class="hidden-xs">
 											 Admin<i class="fa fa-angle-down"></i>

@@ -204,6 +204,7 @@ select {
 
 label {
 	font-weight:400;
+	color:#000;
 }
 
 iframe,
@@ -286,6 +287,7 @@ img.img-responsive {
 }
 a.btn {
 	line-height:26px;
+	color: white;
 }
 a.btn.btn-xs {
 	line-height:inherit;

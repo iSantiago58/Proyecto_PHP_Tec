@@ -5,7 +5,7 @@
 	<form>
 		<div id="content" class="padding-20">
             <div class="row">
-                <div class="col-sm-2 ">
+                <div class="col-sm-2 col-md-offset-2">
 					<label>Nro de Compra:</label>
 					<input id="orderId" type="text" class="form-control" disabled value="<?=$this->orders->pedidoId?>">
 				</div>
@@ -21,14 +21,14 @@
 				</div>
             </div>
             <div class="row">
-                <div class="col-sm-8 ">
+                <div class="col-sm-8 col-md-offset-2">
 					<label>Feedback:</label>
 					<textarea id="feedback" type="text" class="form-control" disabled rows="5"> <?=$this->orders->feedback?> </textarea>
 				</div>
             </div>
 
             <div class="row">
-                <div class="col-sm-8 ">
+                <div class="col-sm-8 col-md-offset-2">
                     <table class="table table-striped" id="datatable_products">
                         <thead>
                             <tr>
