@@ -17,33 +17,33 @@ $urlMain=  constant('URL') . 'main/';
                                         <img src="<?php echo $pathImg;?>1.jpg" alt="product image">
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<? echo $pathImg?>2.jpg" alt="product image">
+                                        <img src="<?php echo $pathImg?>2.jpg" alt="product image">
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<? echo $pathImg?>3.jpg" alt="product image">
+                                        <img src="<?php echo $pathImg?>3.jpg" alt="product image">
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<? echo $pathImg?>4.jpg" alt="product image">
+                                        <img src="<?php echo $pathImg?>4.jpg" alt="product image">
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<? echo $pathImg?>5.jpg" alt="product image">
+                                        <img src="<?php echo $pathImg?>5.jpg" alt="product image">
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<? echo $pathImg?>6.jpg" alt="product image">
+                                        <img src="<?php echo $pathImg?>6.jpg" alt="product image">
                                     </div>
                                 </div>
                                 <div class="product-details-thumbs slider-thumbs-1">
-                                    <div class="sm-image"><img src="images/product/small-size/1.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/1.jpg"
                                             alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="images/product/small-size/2.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/2.jpg"
                                             alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="images/product/small-size/3.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/3.jpg"
                                             alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="images/product/small-size/4.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/4.jpg"
                                             alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="images/product/small-size/5.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/5.jpg"
                                             alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="images/product/small-size/6.jpg"
+                                    <div class="sm-image"><img src="<?=constant('URL')?>images/product/small-size/6.jpg"
                                             alt="product image thumb"></div>
                                 </div>
                             </div>

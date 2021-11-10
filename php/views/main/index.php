@@ -12,6 +12,7 @@ foreach($productos as $key => $p){
     $stock=$p->stock;
     $esActivoProd=$p->esActivoProd;
     $categoriaProd=$p->categoriaProd;
+    $imagen = $p->imagenes;
 
     $htmlStock ="";
     $htmlAction ="";
@@ -37,7 +38,7 @@ foreach($productos as $key => $p){
         if(isset($_SESSION["ci"])){
             $ci = $_SESSION["ci"];
             $htmlAction=$htmlAction . <<<term
-            <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd},${ci});">
+            <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${ci},${categoriaProd});">
             <a>Add to cart</a></li>
             term;
 
@@ -49,12 +50,14 @@ foreach($productos as $key => $p){
         term;
         
     }
-    $pathImg=constant('URL')."images/product/large-size/";
+    $imgProdExplode = explode("/",$imagen);
+    $imgProd = end($imgProdExplode);
+    $pathImg=constant('URL')."admin/productImages/".$idProducto.'/'.$imgProd;
     $htmlProduct =<<<term
     <div class="single-product-wrap">
     <div class="product-image">
             <a href="single-product.html">
-                <img src="${pathImg}1.jpg" alt="Li's Product Image">
+                <img src="${pathImg}" alt="Li's Product Image">
             </a>
             ${htmlStock}
         </div>

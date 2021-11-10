@@ -1,5 +1,4 @@
 <?php 
-    header('Content-Type: application/json');
     include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/Connection.php");
 
     class Payment {
@@ -16,7 +15,7 @@
         
     function getPayments(){
         $con = Connect();
-        $sql = "SELECT * FROM mediopago";
+        $sql = "SELECT * FROM mediodepago";
         $result = $con->query($sql);
         $mediopagos = [];
 

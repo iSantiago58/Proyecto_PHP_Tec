@@ -10,9 +10,10 @@
         public $stock;
         public $esActivoProd;
         public $categoriaProd;
+        public $imagenes;
 
         function __construct($idProducto,$nombreProd,$descProd,$precioProd,
-        $stock,$esActivoProd,$categoriaProd) {
+        $stock,$esActivoProd,$categoriaProd,$imagenes=null) {
             $this->idProducto=$idProducto;
             $this->nombreProd=$nombreProd;
             $this->descProd=$descProd;
@@ -20,6 +21,7 @@
             $this->stock=$stock;
             $this->esActivoProd=$esActivoProd;
             $this->categoriaProd=$categoriaProd;
+            $this->imagenes=$imagenes;
         }
 
     }
@@ -32,10 +34,11 @@
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+                $imagenes = getImages($row["productoid"])[0];
                 $productos[] = new Product(
                     $row["productoid"],$row["productonombre"],$row["productodescripcion"],
                     $row["productoprecio"],$row["stock"],$row["productoesactivo"],
-                    $row["categoriaid"]);
+                    $row["categoriaid"],$imagenes);
             }
         } 
         $con->close();
