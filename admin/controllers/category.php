@@ -6,6 +6,7 @@
             parent::__construct();
             $this->view->categories= null; 
             $this->view->message= null;
+            $this->view->place=null;
         }
 
         function loadModels(){
@@ -23,7 +24,7 @@
 	            }
 	        }
             $this->view->categories = allCategories(); 
-            print_r($this->view->categories);
+            $this->view->place="categories";
             $this->view->render('header_view');
             $this->view->render('category/list');
             $this->view->render('footer_view');
@@ -31,6 +32,7 @@
 
 
         function add(){
+            $this->view->place="categories";
             $this->view->render('header_view');
             $this->view->render('category/add');
             $this->view->render('footer_view');
@@ -45,7 +47,7 @@
 
         function edit($id){
             $this->view->category=getCategoryById($id[0]);
-
+            $this->view->place="categories";
             $this->view->render('header_view');
             $this->view->render('category/edit');
             $this->view->render('footer_view');
