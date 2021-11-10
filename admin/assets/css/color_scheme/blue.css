@@ -31,7 +31,8 @@
 	#aside .logo,
 	body.min #asidesize,
 	#aside, #asidebg {
-		background-color: #000;
+		color: black;
+		background: white;
 	}
 	
 	body.min #aside ul.nav>li:hover:before {

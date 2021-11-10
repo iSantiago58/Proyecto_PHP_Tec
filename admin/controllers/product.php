@@ -7,6 +7,7 @@
             $this->view->categories = null;
             $this->view->message=null;
             $this->view->products=null;
+            $this->view->place=null;
         }
 
         function loadModels(){
@@ -24,6 +25,7 @@
                     $this->view->message="<div class='alert alert-success'>Eliminado correctamente.</div>";
 	            }
 	        }
+            $this->view->place="product";
             $this->view->products=allProducts();
             $this->view->render('header_view');
             $this->view->render('product/list');
@@ -31,6 +33,7 @@
         }
 
         function add(){
+            $this->view->place="product";
             $this->view->categories= allCategories();
             $this->view->render('header_view');
             $this->view->render('product/add');
@@ -137,6 +140,7 @@
         }
 
         function edit($id){
+            $this->view->place="product";
             $this->view->products=getProductById($id[0]);
             $this->view->categories= allCategories();
             $this->view->render('header_view');
