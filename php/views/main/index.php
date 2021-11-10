@@ -37,7 +37,7 @@ foreach($productos as $key => $p){
         if(isset($_SESSION["ci"])){
             $ci = $_SESSION["ci"];
             $htmlAction=$htmlAction . <<<term
-            <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${categoriaProd},${ci});">
+            <li class="add-cart active" onclick="addToCart(${idProducto},'${nombreProd}','${descProd}',${precioProd},${stock},${ci},${categoriaProd});">
             <a>Add to cart</a></li>
             term;
 

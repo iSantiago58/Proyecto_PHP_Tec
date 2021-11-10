@@ -4,12 +4,12 @@
  ?>
 
 <?php 
-if(isset($_SESSION["ci"])):
+if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
      $carData = json_encode($this->car);
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            fillCart(<?php echo $carData?>);
+            fillCart(<?php echo $carData?>,<?php echo $_SESSION["ci"]?>);
         });
     </script>
 <?php endif;  ?>
@@ -29,7 +29,7 @@ if(isset($_SESSION["ci"])):
                 </div>
                 <!-- Header Logo Area End Here -->
                 <!-- Begin Header Middle Right Area -->
-                <?php if(isset($_SESSION["ci"])): ?>
+                <?php if(isset($_SESSION["ci"]) && !isset($this->nocarro)): ?>
                 <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                     <!-- Begin Header Middle Searchbox Area -->
                     

@@ -8,10 +8,17 @@
             $this->view->carro = array();
             $this->view->usuario = array();
             $this->view->fadeModal="fade";
+            $this->view->metodospagos ="fgf";
+            $this->view->mensaje = ""; 
         }
-
         function render(){
             $this->view->products = getProducts();
+            $this->view->metodospagos = getPayments(); 
+            if(isset($_SESSION["ci"])){
+                $this->view->car = getCartProducts($_SESSION["ci"]);
+            }
+            $this->view->nocarro = "seteado"; 
+            $this->view->mensaje = ""; 
             $this->view->render('header_view');
             $this->view->render('menu_view');
             $this->view->render('compra/index');
@@ -22,6 +29,8 @@
         function loadModels(){
             $this->loadModel('categories');
             $this->loadModel('products');
+            $this->loadModel('Orders');
+            $this->loadModel('Payments');
         }
 
         function comprar(){

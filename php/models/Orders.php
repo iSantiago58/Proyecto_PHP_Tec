@@ -27,8 +27,8 @@
         "SELECT pl.pedidolineaid,pl.productoid,pl.precio,pl.cantidad,pro.productonombre,pro.productodescripcion,pro.stock
         FROM `pedido` p join usuariopedido up on p.pedidoid= up.pedidoid 
         join usuario u on u.cedula= up.cedula 
-        join pedidolinea pl on pl.pedidolineaid=p.pedidoid
-        join producto pro on pro.productoid=up.pedidoid
+        join pedidolinea pl on pl.pedidoid=p.pedidoid
+        join producto pro on pro.productoid=pl.productoid 
         WHERE u.cedula='".$ci."' 
         and up.esfinalizado=0;";
         $result = $con->query($sql);
@@ -163,36 +163,103 @@
         $sql = "SELECT pedidoid FROM `usuariopedido` WHERE cedula='".$ci."' and esfinalizado=0;";
         $result = $con->query($sql);
         $row_cnt = $result->num_rows;
+        $cantidad=0;
         if($row_cnt ==0){
             $con = Connect();
             $sql = "INSERT INTO `pedido` (`pedidoid`, `fechacompra`, `direccionenvio`, `direccionfacturacion`, `feedback`, `importetotal`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL)";
             $result = $con->query($sql);
             $idPedido = $con->insert_id;
-            ;
             $con = Connect();
-            $sql = "INSERT INTO `pedidolinea` (`pedidolineaid`, `productoid`, `precio`, `cantidad`) VALUES ('".$idPedido."', '".$idProduct."', '".$precio."', '1')";
+            $sql = "INSERT INTO `pedidolinea` (`pedidoid`, `productoid`, `precio`, `cantidad`) VALUES ('".$idPedido."', '".$idProduct."', '".$precio."', '1')";
             $result = $con->query($sql);
             $con = Connect();
             $sql = "INSERT INTO `usuariopedido` (`cedula`, `pedidoid`, `esfinalizado`) VALUES ('".$ci."', '".$idPedido."', '0');";
             $result = $con->query($sql);
+            $cantidad=1;
         }else{
             $linea_pedido= $result->fetch_assoc();
             $idPedido = $linea_pedido["pedidoid"];
             $con = Connect();
-            $sql = "SELECT * FROM `pedidolinea` WHERE  `pedidolineaid`='".$idPedido."' and `productoid`='".$idProduct."';";
+            $sql = "SELECT * FROM `pedidolinea` WHERE  `pedidoid`='".$idPedido."' and `productoid`='".$idProduct."';";
             $result = $con->query($sql);
             $row_cnt = $result->num_rows;
-            if($row_cnt ==0){
-                $sql = "INSERT INTO `pedidolinea` (`pedidolineaid`, `productoid`, `precio`, `cantidad`) VALUES ('".$idPedido."', '".$idProduct."', '".$precio."', '1')";
+            if($row_cnt <=0){
+                $sql = "INSERT INTO `pedidolinea` (`pedidoid`, `productoid`, `precio`, `cantidad`) VALUES ('".$idPedido."', '".$idProduct."', '".$precio."', '1')";
                 $result = $con->query($sql);
-
+                $cantidad=1;
             }else{
-                $sql = "UPDATE `pedidolinea` SET `cantidad` = `cantidad`+1 WHERE `pedidolineaid` ='".$idPedido."' and `productoid` ='".$idProduct."'";
+                $sql = "UPDATE `pedidolinea` SET `cantidad` = `cantidad`+1 WHERE `pedidoid` ='".$idPedido."' and `productoid` ='".$idProduct."'";
                 $result = $con->query($sql);
+
+                $sql = "SELECT cantidad FROM `pedidolinea` WHERE  `pedidoid`='".$idPedido."' and `productoid`='".$idProduct."';";
+                $result = $con->query($sql);
+                $linea_pedido= $result->fetch_assoc();
+                $cantidad = $linea_pedido["cantidad"];
             }
-
         }
+        return $cantidad;
+    }
 
+    function comprar($ci,$metodopago,$dirEnvio,$dirFacturacion,$improtetotal){
+        $con = Connect();
+        $sql = "SELECT pedidoid FROM `usuariopedido` WHERE cedula='$ci' and esfinalizado=0;";
+        $result = $con->query($sql);
+        $row_cnt = $result->num_rows;
+        $resultado="devuelta ";
+        if($row_cnt ==0){
+            return "error";
+        }else{
+            $linea_pedido= $result->fetch_assoc();
+            $idPedido = $linea_pedido["pedidoid"];
+            $con = Connect();
+            $sql = "UPDATE `pedido` SET `fechacompra` = NOW(), `direccionenvio`= '$dirEnvio' , `direccionenvio`= '$dirFacturacion', `importetotal`='$improtetotal' WHERE `pedidoid` ='$idPedido'";
+            $result = $con->query($sql);
+            $sql = "UPDATE `usuariopedido` SET `esfinalizado` = '1' WHERE `usuariopedido`.`cedula` = $ci AND `usuariopedido`.`pedidoid` = '$idPedido';";
+            $result = $con->query($sql);
+            $sql = "INSERT INTO `usuariopedidopago`(`cedula`, `pedidoid`, `mediodepagoid`, `descripciondepago`) VALUES ('$ci','$idPedido','$metodopago','')";
+            $result = $con->query($sql);
+           
+            $sql = "SELECT * FROM `pedidolinea` where pedidoid=$idPedido";
+            $result = $con->query($sql);
+
+            
+            while($row = $result->fetch_assoc()) {
+                $productoId= $row["productoid"];
+                $cantidad= $row["cantidad"];
+                $sql = "UPDATE `producto` SET stock = stock-$cantidad WHERE productoid='$productoId';";
+                $result2 = $con->query($sql);
+                $resultado=$resultado." ". $sql;
+            }
+        }
+        return "ok";
+    }
+
+    function removeItem($ci,$idProduct,$precio){
+        $con = Connect();
+        $sql = "SELECT pedidoid FROM `usuariopedido` WHERE cedula='".$ci."' and esfinalizado=0;";
+        $result = $con->query($sql);
+        $row_cnt = $result->num_rows;
+        if($row_cnt ==0){
+            return "error";
+        }else{
+            $usuariopedido= $result->fetch_assoc();
+            $idPedido = $usuariopedido["pedidoid"];
+            $con = Connect();
+            $sql = "SELECT cantidad FROM `pedidolinea` WHERE  `pedidoid`='".$idPedido."' and `productoid`='".$idProduct."';";
+            $result = $con->query($sql);
+            $linea_pedido= $result->fetch_assoc();
+            $cantidad = $linea_pedido["cantidad"];
+            echo $cantidad;
+            if($cantidad <=1){
+                $sql = "DELETE FROM `pedidolinea` WHERE `productoid` ='".$idProduct."'";
+                $result = $con->query($sql);
+                return 0;
+            }else{
+                $sql = "UPDATE `pedidolinea` SET `cantidad` = `cantidad`-1 WHERE `pedidoid` ='".$idPedido."' and `productoid` ='".$idProduct."'";
+                $result = $con->query($sql);             
+                return $cantidad-1;
+            }
+        }
     }
     function addOrderProduct($pedidoid, $productoid, $cantidad){
         //PRE: existe producto con productoid = $productoid
