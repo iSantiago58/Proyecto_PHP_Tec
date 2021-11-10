@@ -8,9 +8,7 @@ var registerUser; // Here's the difference
 var comprar;
 var fillCart;
 
-var PATH = "http://localhost:81/proyecto_php_tec/";
-
-
+var PATH = "http://"+location.host+"/proyecto_php_tec/";
 
 $(document).ready(function () {
   registerUser = function (cedula, password, usuarionombre) {
@@ -29,10 +27,11 @@ $(document).ready(function () {
 
       var sumaPrecio = cantidad * productoprecio;
       console.log(product);
+      var rutaImagen = product['imagen'].split('/').pop();
       var $newItem = $(`
       <li id="cart-content-${productoid}" class="cart-count-item">
           <a href="single-product.html" class="minicart-product-image">
-              <img class ="cart-list-item" src="${PATH}images/product/small-size/1.jpg" alt="cart products">
+              <img class ="cart-list-item" src="${PATH+'admin/productImages/'+productoid+'/'+rutaImagen}" alt="cart products">
           </a>
           <div class="minicart-product-details">
               <h6><a href="single-product.html">${productonombre} x ${cantidad}</a></h6>
