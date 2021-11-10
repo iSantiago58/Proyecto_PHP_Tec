@@ -36,11 +36,21 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $pedidos[] = $row;
+
+            }
+            foreach($pedidos as $key=>$pedido){
+                $imagen = getImages($pedido['productoid'])[0];
+                $pedidos[$key]['imagen'] = $imagen;
             }
         } 
         $con->close();
 
         return $pedidos;
+    }
+
+    function getImages($productId){
+        $files=glob(BASE.'admin/productImages/'.$productId.'/*');
+        return $files;
     }
 
 
