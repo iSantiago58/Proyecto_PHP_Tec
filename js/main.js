@@ -7,34 +7,34 @@ Author URI:;
 Version: 1;
 Note: main.js, All Default Scripting Languages For This Theme Included In This File.
 -----------------------------------------------------
-		CSS INDEX
-		================
-		01. Li's Meanmenu
-		02. Header Dropdown
-		03. Li's Sticky Menu Activation
-		04. Nice Select
-		05. Main Slider Activision
-		06. Li's Product Activision
-		07. Li's Product Activision
-		08. Countdown
-		09. Tooltip Active
-		10. Scroll Up
-		11. Category Menu
-		12. Li's Product Activision
-		13. FAQ Accordion
-		14. Toggle Function Active
-		15. Li's Blog Gallery Slider
-		16. Counter Js
-		17. Price slider
-		18. Category menu Activation
-		19. Featured Product active
-		20. Featured Product 2 active
-		21. Modal Menu Active
-		22. Cart Plus Minus Button
-		23. Single Prduct Carousel Activision
-		24. Star Rating Js
-		25. Zoom Product Venobox
-		26. WOW
+    CSS INDEX
+    ================
+    01. Li's Meanmenu
+    02. Header Dropdown
+    03. Li's Sticky Menu Activation
+    04. Nice Select
+    05. Main Slider Activision
+    06. Li's Product Activision
+    07. Li's Product Activision
+    08. Countdown
+    09. Tooltip Active
+    10. Scroll Up
+    11. Category Menu
+    12. Li's Product Activision
+    13. FAQ Accordion
+    14. Toggle Function Active
+    15. Li's Blog Gallery Slider
+    16. Counter Js
+    17. Price slider
+    18. Category menu Activation
+    19. Featured Product active
+    20. Featured Product 2 active
+    21. Modal Menu Active
+    22. Cart Plus Minus Button
+    23. Single Prduct Carousel Activision
+    24. Star Rating Js
+    25. Zoom Product Venobox
+    26. WOW
 
 -----------------------------------------------------------------------------------*/
 
@@ -64,13 +64,7 @@ $(".ht-setting-trigger.is-active").siblings(".catmenu-body").slideDown();
 /*----------------------------------------*/
 /* 03. Li's Sticky Menu Activation
 /*----------------------------------------*/
-$(window).on("scroll", function () {
-  if ($(this).scrollTop() > 300) {
-    $(".header-sticky").addClass("sticky");
-  } else {
-    $(".header-sticky").removeClass("sticky");
-  }
-});
+
 /*----------------------------------------*/
 /*  04. Nice Select
 /*----------------------------------------*/
@@ -352,9 +346,9 @@ $(function () {
   });
   amountprice.val(
     "$" +
-      sliderrange.slider("values", 0) +
-      " - $" +
-      sliderrange.slider("values", 1)
+    sliderrange.slider("values", 0) +
+    " - $" +
+    sliderrange.slider("values", 1)
   );
 });
 /*----------------------------------------*/

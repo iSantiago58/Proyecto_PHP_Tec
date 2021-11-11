@@ -53,10 +53,6 @@
         return $files;
     }
 
-
-
-
-
     function getOrders(){
         $con = Connect();
         $sql = "SELECT * FROM pedido";
@@ -259,7 +255,6 @@
             $result = $con->query($sql);
             $linea_pedido= $result->fetch_assoc();
             $cantidad = $linea_pedido["cantidad"];
-            echo $cantidad;
             if($cantidad <=1){
                 $sql = "DELETE FROM `pedidolinea` WHERE `productoid` ='".$idProduct."'";
                 $result = $con->query($sql);
