@@ -262,7 +262,7 @@
             }else{
                 $sql = "UPDATE `pedidolinea` SET `cantidad` = `cantidad`-1 WHERE `pedidoid` ='".$idPedido."' and `productoid` ='".$idProduct."'";
                 $result = $con->query($sql);   
-                $sql = "SELECT (p.stock-pe.cantidad) as cantidad FROM `pedidolinea` pe  join producto p  on  pe.productoid=p.productoid  WHERE  pe.`pedidoid`='".$idPedido."' and pe.`productoid`='".$idProduct."' "; 
+                $sql = "SELECT (pe.cantidad) as cantidad FROM `pedidolinea` pe  join producto p  on  pe.productoid=p.productoid  WHERE  pe.`pedidoid`='".$idPedido."' and pe.`productoid`='".$idProduct."' "; 
                 $result = $con->query($sql);
                 $linea_pedido= $result->fetch_assoc();
                 $cantidad = $linea_pedido["cantidad"];

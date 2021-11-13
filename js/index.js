@@ -117,7 +117,7 @@ $(document).ready(function () {
         var valueCant = parseInt(cantProduct.first().text(), 10);
         valueCant = valueCant - 1;
         if (valueCant <= 0) {
-          cantProduct.text("Vendido");
+          cantProduct.text("0");
           cantProduct.addClass("stickersold").removeClass("sticker");
           $(".interact" + productoid).remove();
         } else {
@@ -150,6 +150,7 @@ $(document).ready(function () {
       dataType: "json",
       data: dataJson,
       success: function (response) {
+        console.log(response);
         $("#cart-content-" + productoid).remove();
         if (response["resultado"] >= 1) {
           var $newItem = $(`
@@ -195,10 +196,7 @@ $(document).ready(function () {
           $("#action-" + productoid).append(htmlAction);
 
         } else {
-
-          valueCant = valueCant + 1;
-
-          cantProduct.text(valueCant);
+          cantProduct.text(valueCant + 1);
         }
         cantProduct.addClass("sticker").removeClass("stickersold");
 
