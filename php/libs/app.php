@@ -29,7 +29,13 @@ class App{
             $nparam = sizeof($url);
 
             if($nparam > 1){
-                if($nparam > 2){
+                if($url[0]=='producto'){
+                    $param = [];
+                    for($i = 1; $i<$nparam; $i++){
+                        array_push($param, $url[$i]);
+                    }
+                    $controller->render($param);
+                }else if($nparam > 2){
                     $param = [];
                     for($i = 2; $i<$nparam; $i++){
                         array_push($param, $url[$i]);

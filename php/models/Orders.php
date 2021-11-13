@@ -35,8 +35,8 @@
         $pedidos = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
+                $row["productodescripcion"]= preg_replace('/\s+/', '', $row["productodescripcion"]);
                 $pedidos[] = $row;
-
             }
             foreach($pedidos as $key=>$pedido){
                 $imagen = getImages($pedido['productoid'])[0];
@@ -218,7 +218,7 @@
             $linea_pedido= $result->fetch_assoc();
             $idPedido = $linea_pedido["pedidoid"];
             $con = Connect();
-            $sql = "UPDATE `pedido` SET `fechacompra` = NOW(), `direccionenvio`= '$dirEnvio' , `direccionenvio`= '$dirFacturacion', `importetotal`='$improtetotal' WHERE `pedidoid` ='$idPedido'";
+            $sql = "UPDATE `pedido` SET `fechacompra` = NOW(), `direccionenvio`= '$dirEnvio' , `direccionfacturacion`= '$dirFacturacion', `importetotal`='$improtetotal' WHERE `pedidoid` ='$idPedido'";
             $result = $con->query($sql);
             $sql = "UPDATE `usuariopedido` SET `esfinalizado` = '1' WHERE `usuariopedido`.`cedula` = $ci AND `usuariopedido`.`pedidoid` = '$idPedido';";
             $result = $con->query($sql);

@@ -38,6 +38,7 @@
             }else{
                 $_SESSION["ci"] = $usuario;
                 $mensaje = "LOGUEADO";
+                $_SESSION["esAdmin"]= $logData->esadmin;
                 $this->goToMain();
             }
             
