@@ -35,7 +35,7 @@
         $pedidos = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $row["productodescripcion"]= preg_replace('/\s+/', '', $row["productodescripcion"]);
+                $row["productodescripcion"]= str_replace(array("\r", "\n"),"", $row["productodescripcion"]);
                 $pedidos[] = $row;
             }
             foreach($pedidos as $key=>$pedido){

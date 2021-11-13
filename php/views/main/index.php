@@ -48,7 +48,7 @@ foreach($productos as $key => $p){
         term;
     }
     $htmlProduct =<<<term
-    <div class="single-product-wrap">
+    <div class="single-product-wrap espaciado">
     <div class="product-image">
             <a>
                 <img src="${pathImg}" alt="Li's Product Image">
