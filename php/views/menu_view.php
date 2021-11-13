@@ -18,6 +18,16 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
     </script>
 <?php endif;  ?>
 
+<style>
+
+.logo-empresa {
+    max-width: 80%;
+    max-height: 100%;
+    margin-top: -20%;
+    margin-bottom: -20%;
+}
+    </style>
+
 <header class="li-header-4">
     <!-- Begin Header Middle Area -->
     <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
@@ -27,7 +37,7 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
                         <a href="index.html">
-                            <img src="<?php echo $pathLogo;?>2.jpg" alt="">
+                            <img class="logo-empresa" src="<?php echo $pathLogo;?>2.gif" alt="">
                         </a>
                     </div>
                 </div>

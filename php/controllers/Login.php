@@ -41,8 +41,8 @@
                 $_SESSION["esAdmin"]= $logData->esadmin;
                 $this->goToMain();
             }
-            
         }
+        
         function goToMain(){
             header( "Location: ".URL."main");
 
