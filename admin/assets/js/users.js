@@ -79,6 +79,5 @@ function editUser(){
     }else{
         $('#errorEditUser').html("<div class='alert alert-danger margin-bottom-30'>Todos los campos son obligatorios.</div>");
     }
-
     return false;
 }
