@@ -39,6 +39,7 @@
 		<script type="text/javascript" src="<?php echo URL;?>js/scrollUp.min.js"></script>
 		<!-- Main/Activator js -->
 		<script type="text/javascript" src="<?php echo URL;?>js/main.js"></script>
+		<script type="text/javascript" src="<?php echo URL;?>js/profile.js"></script>
 
 	</footer>
 </body>

@@ -346,4 +346,61 @@
         $con->close();
         return $ok;
     }
+
+
+  /*  function getUserOrdersFinished($cedula){
+        $con = Connect();
+        $sql = "SELECT up.cedula, up.pedidoid, p.direccionenvio, p.feedback, p.importetotal, p.fechacompra FROM usuariopedido up INNER JOIN pedido p ON p.pedidoid=up.pedidoid WHERE up.cedula = $cedula and esfinalizado=1";
+        $result = $con->query($sql);
+        $usuarioPedidos = [];
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $usuarioPedidos[] = $row;
+                $pedidoid=$row['pedidoid'];
+                $sql2="SELECT p.productonombre, pl.precio, pl.cantidad FROM pedidolinea pl INNER JOIN producto p ON p.productoid=pl.productoid WHERE pl.pedidoid=8";
+                $result2=$con->query($sql2);
+                $prods=[];
+                if ($result2->num_rows > 0) {
+                    while($p = $result2->fetch_assoc()){
+                        $prods[] = $p;
+                    }
+
+                    $usuarioPedidos[]['productos'] = $p;
+                }
+            }
+        }  
+        $con->close();
+        return $usuarioPedidos;
+    }*/
+
+    function getUserOrdersFinished($cedula){
+        $con = Connect();
+        $sql = "SELECT up.cedula, up.pedidoid, p.direccionenvio, p.feedback, p.importetotal, p.fechacompra FROM usuariopedido up INNER JOIN pedido p ON p.pedidoid=up.pedidoid WHERE up.cedula = $cedula and esfinalizado=1";
+        $result = $con->query($sql);
+        $usuarioPedidos = [];
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $usuarioPedidos[] = $row;
+            }
+            foreach($usuarioPedidos as $key=>$pedido){
+                $id=$pedido['pedidoid'];
+                $sql2="SELECT p.productonombre, pl.precio, pl.cantidad FROM pedidolinea pl INNER JOIN producto p ON p.productoid=pl.productoid WHERE pl.pedidoid=$id";
+                $result2=$con->query($sql2);
+                $prods=[];
+                if ($result2->num_rows > 0) {
+                    while($p = $result2->fetch_assoc()) {
+                         $prods[]= $p;
+                    }
+                }
+                $usuarioPedidos[$key]['productos'] = $prods;
+            }
+        }  
+
+        $con->close();
+        return $usuarioPedidos;
+    }
+
+
 ?>
