@@ -98,4 +98,11 @@
         } 
         return null;
     }
+
+    function sendRevew($revew, $orderId){
+        $con = Connect();
+        $sql = "UPDATE pedido SET feedback='$revew' WHERE pedidoid=$orderId";
+        return $result = $con->query($sql);
+
+    }
 ?>
