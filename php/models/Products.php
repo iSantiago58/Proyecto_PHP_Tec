@@ -36,7 +36,7 @@
             while($row = $result->fetch_assoc()) {
                 $imagenes = getImages($row["productoid"])[0];
                 $productos[] = new Product(
-                    $row["productoid"],$row["productonombre"],preg_replace('/\s+/', '', $row["productodescripcion"]),
+                    $row["productoid"],$row["productonombre"],str_replace(array("\r", "\n"),"", $row["productodescripcion"]),
                     $row["productoprecio"],$row["stock"],$row["productoesactivo"],
                     $row["categoriaid"],$imagenes);
             }
@@ -55,7 +55,7 @@
             while($row = $result->fetch_assoc()) {
                 $imagenes = getImages($row["productoid"]);
                 $producto[] = new Product(
-                    $row["productoid"],$row["productonombre"],preg_replace('/\s+/', '', $row["productodescripcion"]),
+                    $row["productoid"],$row["productonombre"],str_replace(array("\r", "\n"),"", $row["productodescripcion"]),
                     $row["productoprecio"],$row["stock"],$row["productoesactivo"],
                     $row["categoriaid"],$imagenes);
             }
@@ -73,7 +73,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $productos[] = new Product(
-                    $row["productoid"],$row["productonombre"],preg_replace('/\s+/', '', $row["productodescripcion"]),
+                    $row["productoid"],$row["productonombre"],str_replace(array("\r", "\n"),"", $row["productodescripcion"]),
                     $row["productoprecio"],$row["stock"],$row["productoesactivo"],
                     $row["categoriaid"]);
             }
@@ -91,7 +91,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $productos[] = new Product(
-                    $row["productoid"],$row["productonombre"],preg_replace('/\s+/', '', $row["productodescripcion"]),
+                    $row["productoid"],$row["productonombre"],str_replace(array("\r", "\n"),"", $row["productodescripcion"]),
                     $row["productoprecio"],$row["stock"],$row["productoesactivo"],
                     $row["categoriaid"]);
             }

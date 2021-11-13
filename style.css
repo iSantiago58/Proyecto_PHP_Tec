@@ -80,12 +80,16 @@ Custom para php
   opacity: 0.2
 }
 
-
+.single-product-wrap.espaciado {
+    padding-left: 1px;
+}
 .order-photos{
     display: grid;
 }
 
-
+.product-area.pt-55.pb-25.pt-xs-50 {
+    margin-top: 25px;
+}
 
 
 /* Google Fonts------------------
@@ -2388,11 +2392,9 @@ textarea:focus {
   border-radius: 4px;
   bottom: -15px;
   content: "";
-  left: -10px;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   position: absolute;
-  right: -10px;
   top: -15px;
   -webkit-transition: all 300ms ease-in 0s;
   transition: all 300ms ease-in 0s;
