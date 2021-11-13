@@ -15,7 +15,7 @@
 				</div>
                 <div class="col-sm-1">
                     <label></label>
-                    <button id="btn-edit-category" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
+                    <button style="color: white;" id="btn-edit-category" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
                 </div>
             </div>
 		</div>

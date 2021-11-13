@@ -28,7 +28,7 @@
 			<div class="row">
 				<div class="col-sm-8">
 					<footer>
-						<button id="btn-edit-user" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
+						<button style="color: white;" id="btn-edit-user" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
 					</footer>
 				</div>
 			</div>

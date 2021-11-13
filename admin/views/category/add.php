@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<footer>
-						<button id="btn-send-category" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
+						<button style="color: white;" id="btn-send-category" type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Guardar</button>
 					</footer>
 				</div>
 			</div>

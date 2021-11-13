@@ -63,7 +63,6 @@ class CategoryModel {
             $sql = "insert into categoria(categorianombre) values('$name')";
             $result = $link->query($sql);
             $link->close();
-    
             return $result;
         }else{
             return -1;

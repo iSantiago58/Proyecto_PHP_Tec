@@ -63,19 +63,14 @@
 				<nav>
 					<ul class="nav pull-right">
 						<li class="dropdown pull-left">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+							<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 								<img class="user-avatar" alt="" src="<?=PROJECT?>assets/images/noavatar.png" height="34">
 								<span class="user-name">
 									<span class="hidden-xs">
-											 Admin<i class="fa fa-angle-down"></i>
+											 Admin</i>
 									</span>
 								</span>
 							</a>
-							<ul class="dropdown-menu hold-on-click">
-								<li>
-									<a href=""><i class="fa fa-power-off"></i> Salir</a>
-								</li>
-							</ul>
 						</li>
 					</ul>
 				</nav>
