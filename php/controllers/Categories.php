@@ -1,8 +1,6 @@
 <?php
     include_once($_SERVER['DOCUMENT_ROOT']."/proyecto_php_tec/php/models/Categories.php");
 
-z
-    
     
     Class Categories extends Controller{
 
