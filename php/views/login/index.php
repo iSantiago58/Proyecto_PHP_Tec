@@ -82,8 +82,8 @@
             <div class="card">
 
                 <form  class="box"  action="<?php echo constant('URL');?>Login/verify" method="POST">
-                    <h1>Login</h1>
-                    <p class="text-muted color_type"> Please enter your login and password!</p> 
+                    <h1>Iniciar sesión</h1>
+                    <p class="text-muted color_type"> Por favor introduzca su cedula y contraseña!</p> 
                     <input id="ci" type="text" name="ci" placeholder="Username"> 
                     <input id="password" type="password" name="password" placeholder="Password"> 
                     <div class="isa_error"><?php echo $this->mensaje; ?></div>

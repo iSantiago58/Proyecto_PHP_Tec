@@ -36,7 +36,7 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
                 <!-- Begin Header Logo Area -->
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
-                        <a href="index.html">
+                        <a >
                             <img class="logo-empresa" src="<?php echo $pathLogo;?>2.gif" alt="">
                         </a>
                     </div>
@@ -103,9 +103,9 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
                                 <li><a href="<?php echo constant('URL')."about";?>">Sobre nosotros</a></li>
                                 <?=$buttonAdmin?>
                                 <?php if(isset($_SESSION["ci"])): ?>
-                                <li><a href="<?php echo $this->pagePath;?>Logout">Logout</a></li>
+                                <li><a href="<?php echo $this->pagePath;?>Logout">Desconectarse</a></li>
                                 <?php else: ?>
-                                <li><a href="<?php echo constant('URL')."login";?>">Login</a></li>
+                                <li><a href="<?php echo constant('URL')."login";?>">Iniciar Sesion</a></li>
                                 <?php endif;  ?>
                                 
                             </ul>

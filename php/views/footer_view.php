@@ -45,7 +45,20 @@
 
 	</footer>
 </body>
+
+
+<style>
+
+.logo-footer {
+    max-width: 80%;
+    max-height: 100%;
+    margin-top: -10%;
+    margin-bottom: -20%;
+}
+</style>
+
 <div class="footer">
+
     <!-- Begin Footer Static Top Area -->
 
     <!-- Footer Static Top Area End Here -->
@@ -57,19 +70,19 @@
                     <!-- Begin Footer Logo Area -->
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-logo">
-                            <img class="logo-empresa" src="<?=URL?>images/menu/logo/1.gif" alt="Footer Logo">
+                            <img class="logo-footer" src="<?=URL?>images/menu/logo/1.gif" alt="Footer Logo">
                             <p class="info">
-                                We are a team of designers and developers that create high quality HTML Template & Woocommerce, Shopify Theme.
+                                Estamos para servirle, como esclavos de vuestros deseos, siempre y cuando sea legal. Lo ilegal ya lo dejamos.
                             </p>
                         </div>
                         <ul class="des">
                             <li>
-                                <span>Address: </span>
-                                6688Princess Road, London, Greater London BAS 23JK, UK
+                                <span>Direccion: </span>
+                                Dr. Luis Bonavita 1266, 11300 Montevideo, Departamento de Montevideo
                             </li>
                             <li>
-                                <span>Phone: </span>
-                                <a href="#">(+123) 123 321 345</a>
+                                <span>Telefono: </span>
+                                <a >(+598) 26240238</a>
                             </li>
                             <li>
                                 <span>Email: </span>
