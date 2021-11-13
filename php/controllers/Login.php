@@ -47,5 +47,9 @@
             header( "Location: ".URL."main");
 
         }
+        function logOut(){
+            session_destroy();
+            header( "Location: ".URL."Login");
+        }
     }
 ?>
