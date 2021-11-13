@@ -86,7 +86,6 @@ $(document).ready(function () {
       dataType: "json",
       data: dataJson,
       success: function (response) {
-        console.log(response);
         var cant = response['cantidad'];
         $("#cart-content-" + productoid).remove();
         var $newItem = $(`
@@ -138,7 +137,6 @@ $(document).ready(function () {
     ci,
     imagePath
   ) {
-    console.log("entra aca removeitem");
     var urlAjax = PATH + 'includes/ajaxFunctions.php';
     var dataJson = {
       "removeItem": "set",
@@ -152,7 +150,6 @@ $(document).ready(function () {
       dataType: "json",
       data: dataJson,
       success: function (response) {
-        console.log(response);
         $("#cart-content-" + productoid).remove();
         if (response["resultado"] >= 1) {
           var $newItem = $(`
@@ -185,11 +182,8 @@ $(document).ready(function () {
         var cantProduct = $(idnuevo);
         var valueCant = parseInt(cantProduct.first().text(), 10);
 
-        console.log(valueCant);
         if (isNaN(valueCant) || valueCant == 0) {
           var urlProductCart = PATH + 'producto/' + productoid;
-          console.log(urlProductCart);
-
           cantProduct.text(1);
           var htmlAction = $(`<div class="add-actions interact${productoid}">
                 <ul class="add-actions-link">

@@ -105,7 +105,6 @@
             }
 
         }else{
-            console.log("hola");
             $('.isa_error').html("Debe completar todos los campos obligatorios");
         }
     }
