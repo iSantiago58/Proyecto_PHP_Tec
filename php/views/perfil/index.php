@@ -11,7 +11,23 @@
 
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-            Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+                <div class="row">
+                    <div class="col-1">
+                        <p><b>Cédula:</b></p>
+                    </div>
+                    <div class="col">
+                        <p><?php echo $this->user->cedula?> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1">
+                        <p><b>Usuario:</b></p>
+                    </div>
+                    <div class="col">
+                        <p><?php echo $this->user->usuarionombre?> </p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -25,7 +41,59 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-            Some placeholder content for the second accordion panel. This panel is hidden by default.
+                <?php if(!empty($this->orders)){?>
+                    <div class="row">
+                        <?php foreach($this->orders as $order){?>
+                            <div class="col-6">
+                                <div class="your-order" style="margin-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-8">
+                                     <h4>Compra #<?php echo $order['pedidoid']?></h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4>Total $<?php echo $order['importetotal']?></h4>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="your-order-table table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="cart-product-name">Producto</th>
+                                                    <th class="cart-product-total">Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <?php                                                 
+                                                foreach($order['productos'] as $prod){?>
+                                                    <tr class="cart_item">
+                                                        <td class="cart-product-name"><?=$prod['productonombre']?> <strong class="product-quantity"> × <?=$prod['cantidad']?></strong></td>
+                                                        <td class="cart-product-total"><span class="amount"><?=$prod['precio']?></span></td>  
+                                                    </tr>
+                                                <?php }?>
+                                                <td>
+                                                    <?php if(!empty($order['feedback'])){?>
+                                                        <h5>Comentario</h5>
+                                                        <p><?=$order['feedback']?></p>
+                                                    <?php  }else{?>
+                                                        <textarea id="revew_<?=$order['pedidoid']?>" rows="4" placeholder="Escribe aquí tus comentarios"></textarea>
+                                                        <div id="btn-comentario_<?=$order['pedidoid']?>">
+                                                            <a href="javascript:sendReview(<?=$order['pedidoid']?>)" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                                <span>Enviar</span>
+                                                            </a>
+                                                        </div>
+                                                    <?php }?>
+                                                    <div id='errorSendReview_<?=$order['pedidoid']?>'></div>
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php }?>
+                    </div>
+                    <?php }?>
+               
             </div>
         </div>
     </div>
