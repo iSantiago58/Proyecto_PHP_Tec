@@ -46,18 +46,20 @@ $(document).ready(function () {
       priceOver.text(valueSubtotal);
       priceOver.append(`<span class="cart-item-count">${value1}</span>`);
       //cambia la cantidad de productos 
+
+      /*
       var idnuevo = ".cantidad" + productoid;
       var cantProduct = $(idnuevo);
       var valueCant = parseInt(cantProduct.first().text(), 10);
       valueCant = valueCant - 1;
-      if (valueCant == 0) {
-        cantProduct.text("vendido");
+      if (valueCant <= 0) {
+        cantProduct.text("Vendido");
         cantProduct.addClass("stickersold").removeClass("sticker");
         $(".interact" + productoid).remove();
       } else {
         cantProduct.text(valueCant);
       }
-
+*/
     });
   };
 
@@ -115,8 +117,8 @@ $(document).ready(function () {
         var cantProduct = $(idnuevo);
         var valueCant = parseInt(cantProduct.first().text(), 10);
         valueCant = valueCant - 1;
-        if (valueCant == 0) {
-          cantProduct.text("vendido");
+        if (valueCant <= 0) {
+          cantProduct.text("Vendido");
           cantProduct.addClass("stickersold").removeClass("sticker");
           $(".interact" + productoid).remove();
         } else {
@@ -182,14 +184,30 @@ $(document).ready(function () {
         var idnuevo = ".cantidad" + productoid;
         var cantProduct = $(idnuevo);
         var valueCant = parseInt(cantProduct.first().text(), 10);
-        valueCant = valueCant - 1;
-        if (valueCant == 0) {
-          cantProduct.text("vendido");
-          cantProduct.addClass("stickersold").removeClass("sticker");
-          $(".interact" + productoid).remove();
+
+        console.log(valueCant);
+        if (isNaN(valueCant) || valueCant == 0) {
+          var urlProductCart = PATH + 'producto/' + productoid;
+          console.log(urlProductCart);
+
+          cantProduct.text(1);
+          var htmlAction = $(`<div class="add-actions interact${productoid}">
+                <ul class="add-actions-link">
+          <li class="add-cart active" onclick="addToCart(${productoid},'${productonombre}','${productodescripcion}',${productoprecio},${stock},${ci},'${imagePath}');">
+              <a>Add to cart</a>
+          </li>
+          <li><a class="quick-view" href="${urlProductCart}"><i class="fa fa-eye"></i></a></li></ul>
+            </div>`);
+          $("#action-" + productoid).append(htmlAction);
+
         } else {
+
+          valueCant = valueCant + 1;
+
           cantProduct.text(valueCant);
         }
+        cantProduct.addClass("sticker").removeClass("stickersold");
+
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log("Status: " + textStatus);

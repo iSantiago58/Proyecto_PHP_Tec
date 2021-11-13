@@ -27,16 +27,19 @@
             $this->view->render('footer_view');
 
         }
+        
         function deducirProductosEnCarro($productos,$carro){
             foreach ($carro as $keyItem => $item) {
                 foreach ($productos as $keyProducto => $producto) {
                     if($producto->idProducto == $item['productoid']){
                         $productos[$keyProducto]->stock = $producto->stock - $item['cantidad'];
                     }
+                    
                 }
             }
             return $productos;
         }
+        
         function loadModels(){
             $this->loadModel('categories');
             $this->loadModel('products');

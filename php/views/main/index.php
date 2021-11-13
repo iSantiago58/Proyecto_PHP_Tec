@@ -25,7 +25,9 @@ foreach($productos as $key => $p){
         term;
         $htmlAction='';
     }else{
+
         $htmlStock =<<<term
+        
         <span class="sticker cantidad${idProducto}">${stock}</span>
         term;
         $urlFillCart=  constant('URL') . 'main/fillCar/'; 
@@ -55,7 +57,7 @@ foreach($productos as $key => $p){
             </a>
             ${htmlStock}
         </div>
-        <div class="product_desc">
+        <div id="action-${idProducto}" class="product_desc">
             <div class="product_desc_info">
                 <h4><a class="product_name" >${nombreProd}</a>
                 </h4>
