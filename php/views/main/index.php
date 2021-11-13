@@ -29,7 +29,7 @@ foreach($productos as $key => $p){
         <span class="sticker cantidad${idProducto}">${stock}</span>
         term;
         $urlFillCart=  constant('URL') . 'main/fillCar/'; 
-        $urlModaCart=  constant('URL') . 'main/modal/'.$idProducto; 
+        $urlProductCart=  constant('URL') . 'producto/'.$idProducto; 
         $htmlAction=<<<term
         <div class="add-actions interact${idProducto}">
                 <ul class="add-actions-link">
@@ -42,7 +42,7 @@ foreach($productos as $key => $p){
             term;
         }
         $htmlAction=$htmlAction . <<<term
-                    <li><a class="quick-view" href="${urlModaCart}"><i class="fa fa-eye"></i></a></li>
+                    <li><a class="quick-view" href="${urlProductCart}"><i class="fa fa-eye"></i></a></li>
                 </ul>
             </div>
         term;

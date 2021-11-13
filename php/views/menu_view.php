@@ -4,8 +4,12 @@
  ?>
 
 <?php 
+$buttonAdmin ="";
 if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
      $carData = json_encode($this->car);
+     if($_SESSION["esAdmin"]==true){
+        $buttonAdmin = '<li><a href="'.constant('URL').'admin" target="_blank" >Administración</a></li>';
+     }
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -59,6 +63,7 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
                                         <a href="<?php echo constant('URL');?>compra" class="li-button li-button-fullwidth li-button-sm">
                                             <span>Checkout</span>
                                         </a>
+                                        
                                     </div>
                                 </div>
                             </li>
@@ -86,6 +91,7 @@ if(isset($_SESSION["ci"]) && !isset($this->nocarro)):
                                 </li>
 
                                 <li><a href="<?php echo constant('URL')."about";?>">Sobre nosotros</a></li>
+                                <?=$buttonAdmin?>
                                 <?php if(isset($_SESSION["ci"])): ?>
                                 <li><a href="<?php echo $this->pagePath;?>Logout">Logout</a></li>
                                 <?php else: ?>

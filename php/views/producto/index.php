@@ -1,205 +1,158 @@
+<?php 
+$producto = $this->product[0];
+foreach($producto->imagenes as  $index=>$path){
+    $imgProdExplode = explode("/",$path);
+    $imgProd = end($imgProdExplode);
+    $producto->imagenes[$index]=constant('URL')."admin/productImages/".$producto->idProducto.'/'.$imgProd;
+}
+$onClick="";
+if(isset($_SESSION["ci"])){
+    $idProducto =$producto->idProducto;
+    $nombreProd=$producto->nombreProd;
+    $descProd=$producto->descProd;
+    $precioProd=$producto->precioProd;
+    $stock=$producto->stock;
+    $esActivoProd=$producto->esActivoProd;
+    $categoriaProd=$producto->categoriaProd;
+    $imagen = $producto->imagenes[0];
+    $htmlStock ="";
+    $htmlAction ="";
+    $pathModal =$this->pagePath."modal";
+    $imgProdExplode = explode("/",$imagen);
+    $imgProd = end($imgProdExplode);
+    $pathImg=constant('URL')."admin/productImages/".$idProducto.'/'.$imgProd;
+    $ci = $_SESSION["ci"];
+    $onClick='onclick=\'addToCart('.$idProducto.',"'.$nombreProd.'","'.$descProd.'",'.$precioProd.','.$stock.','.$ci.',"'.$pathImg.'");\'';
+}
+
+?>
+
+<style>
+    .only-one{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
 <div class="content-wraper">
     <div class="container">
         <div class="row single-product-area">
             <div class="col-lg-5 col-md-6">
                 <!-- Product Details Left -->
-                <div class="product-details-left">
-                    <div class="product-details-images slider-navigation-1">
-                        <div class="lg-image">
-                            <img src="images/product/large-size/1.jpg" alt="product image">
-                        </div>
-                        <div class="lg-image">
-                            <img src="images/product/large-size/2.jpg" alt="product image">
-                        </div>
-                        <div class="lg-image">
-                            <img src="images/product/large-size/3.jpg" alt="product image">
-                        </div>
-                        <div class="lg-image">
-                            <img src="images/product/large-size/4.jpg" alt="product image">
-                        </div>
-                        <div class="lg-image">
-                            <img src="images/product/large-size/5.jpg" alt="product image">
-                        </div>
-                        <div class="lg-image">
-                            <img src="images/product/large-size/6.jpg" alt="product image">
-                        </div>
+                
+                    <?php 
+                        if(count($producto->imagenes)==1){?>
+                        <div class="only-one">
+                        <div class="only-one" style="display: flex;">
+                        <div class="only-one">
+                                <a class="popup-img venobox vbox-item only-one" href="<?=$producto->imagenes[0]?>" data-gall="myGallery">
+                                    <img src="<?=$producto->imagenes[0]?>" class="only-one" alt="product image">
+                                </a>
+                            </div>
+
+                    <?php }else{?>
+                        <div class="product-details-left">
+                            <div class="product-details-images slider-navigation-1" style="display: flex;">
+                        
+                                <?php foreach($producto->imagenes as  $index=>$p){?>
+                                    <div class="lg-image">
+                                        <a class="popup-img venobox vbox-item" href="<?=$p?>" data-gall="myGallery">
+                                            <img src="<?=$p?>" alt="product image">
+                                        </a>
+                                    </div>
+                                <?php }
+                                if(count($producto->imagenes)<=3 && count($producto->imagenes)>1){?>
+                                    <?php foreach($producto->imagenes as  $index=>$p){?>
+                                        <div class="lg-image">
+                                            <a class="popup-img venobox vbox-item" href="<?=$p?>" data-gall="myGallery">
+                                                <img src="<?=$p?>" alt="product image">
+                                            </a>
+                                        </div>
+                                <?php }
+                                }
+                    }?>
+                        
                     </div>
-                    <div class="product-details-thumbs slider-thumbs-1">
-                        <div class="sm-image"><img src="images/product/small-size/1.jpg" alt="product image thumb"></div>
-                        <div class="sm-image"><img src="images/product/small-size/2.jpg" alt="product image thumb"></div>
-                        <div class="sm-image"><img src="images/product/small-size/3.jpg" alt="product image thumb"></div>
-                        <div class="sm-image"><img src="images/product/small-size/4.jpg" alt="product image thumb"></div>
-                        <div class="sm-image"><img src="images/product/small-size/5.jpg" alt="product image thumb"></div>
-                        <div class="sm-image"><img src="images/product/small-size/6.jpg" alt="product image thumb"></div>
+                    <div class="product-details-thumbs slider-thumbs-1" style="display: flex;">
+                    <?php if(count($producto->imagenes)>1){
+                         foreach($producto->imagenes as  $index=>$p){?>
+                            <div class="sm-image">
+                                <img src="<?=$p?>" alt="product image thumb">
+                            </div>
+                        <?php }
+                        if(count($producto->imagenes)<=3){?>
+                            <?php foreach($producto->imagenes as  $index=>$p){?>
+                            <div class="sm-image">
+                                <img src="<?=$p?>" alt="product image thumb">
+                            </div>
+                        <?php }
+                        }
+                    }?>
+                        
                     </div>
                 </div>
                 <!--// Product Details Left -->
             </div>
 
             <div class="col-lg-7 col-md-6">
-                <div class="product-details-view-content sp-affiliate-content pt-60">
+                <div class="product-details-view-content pt-60">
                     <div class="product-info">
-                        <h2>Today is a good day Framed poster</h2>
-                        <span class="product-details-ref">Reference: demo_15</span>
-                        <div class="rating-box pt-20">
-                            <ul class="rating rating-with-review-item">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                <li class="review-item"><a href="#">Read Review</a></li>
-                                <li class="review-item"><a href="#">Write Review</a></li>
-                            </ul>
-                        </div>
+                        <h2><?=$producto->nombreProd?></h2>
                         <div class="price-box pt-20">
-                            <span class="new-price new-price-2">$57.98</span>
+                            <span class="new-price new-price-2">$<?=$producto->precioProd?></span>
                         </div>
                         <div class="product-desc">
                             <p>
-                                <span>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur adipisicing elit. quibusdam corporis, earum facilis et nostrum dolorum accusamus similique eveniet quia pariatur.
+                                <span><?=$producto->descProd?>
                                 </span>
                             </p>
                         </div>
                         <div class="single-add-to-cart">
                             <form action="#" class="cart-quantity">
-                                <button class="add-to-cart" type="submit">Add to cart</button>
+                                <button class="add-to-cart" <?=$onClick?> >Agregar al carro</button>
                             </form>
+                        </div>
+
+                        <div class="block-reassurance">
+                            <ul>
+                                <li>
+                                    <div class="reassurance-item">
+                                        <div class="reassurance-icon">
+                                            <i class="fa fa-check-square-o"></i>
+                                        </div>
+                                        <p>Calidad garantizada</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="reassurance-item">
+                                        <div class="reassurance-icon">
+                                            <i class="fa fa-truck"></i>
+                                        </div>
+                                        <p>Entrega en todo el país</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="reassurance-item">
+                                        <div class="reassurance-icon">
+                                            <i class="fa fa-exchange"></i>
+                                        </div>
+                                        <p> Si no está conforme le devolvemos el dinero</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>  
         </div>
     </div>
 </div>
 <!-- content-wraper end -->
-<!-- Begin Product Area -->
-<div class="product-area pt-35">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="li-product-tab">
-                    <ul class="nav li-product-menu">
-                        <li><a class="active" data-toggle="tab" href="#description"><span>Description</span></a></li>
-                        <li><a data-toggle="tab" href="#product-details"><span>Product Details</span></a></li>
-                        <li><a data-toggle="tab" href="#reviews"><span>Reviews</span></a></li>
-                    </ul>               
-                </div>
-                <!-- Begin Li's Tab Menu Content Area -->
-            </div>
-        </div>
-        <div class="tab-content">
-            <div id="description" class="tab-pane active show" role="tabpanel">
-                <div class="product-description">
-                    <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span>
-                </div>
-            </div>
-            <div id="product-details" class="tab-pane" role="tabpanel">
-                <div class="product-details-manufacturer">
-                    <a href="#">
-                        <img src="images/product-details/1.jpg" alt="Product Manufacturer Image">
-                    </a>
-                    <p><span>Reference</span> demo_7</p>
-                    <p><span>Reference</span> demo_7</p>
-                </div>
-            </div>
-            <div id="reviews" class="tab-pane" role="tabpanel">
-                <div class="product-reviews">
-                    <div class="product-details-comment-block">
-                        <div class="comment-review">
-                            <span>Grade</span>
-                            <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                            </ul>
-                        </div>
-                        <div class="comment-author-infos pt-25">
-                            <span>HTML 5</span>
-                            <em>01-12-18</em>
-                        </div>
-                        <div class="comment-details">
-                            <h4 class="title-block">Demo</h4>
-                            <p>Plaza</p>
-                        </div>
-                        <div class="review-btn">
-                            <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Write Your Review!</a>
-                        </div>
-                        <!-- Begin Quick View | Modal Area -->
-                        <div class="modal fade modal-wrapper" id="mymodal" >
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <h3 class="review-page-title">Write Your Review</h3>
-                                        <div class="modal-inner-area row">
-                                            <div class="col-lg-6">
-                                                <div class="li-review-product">
-                                                    <img src="images/product/large-size/3.jpg" alt="Li's Product">
-                                                    <div class="li-review-product-desc">
-                                                        <p class="li-product-name">Today is a good day Framed poster</p>
-                                                        <p>
-                                                            <span>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Design </span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="li-review-content">
-                                                    <!-- Begin Feedback Area -->
-                                                    <div class="feedback-area">
-                                                        <div class="feedback">
-                                                            <h3 class="feedback-title">Our Feedback</h3>
-                                                            <form action="#">
-                                                                <p class="your-opinion">
-                                                                    <label>Your Rating</label>
-                                                                    <span>
-                                                                        <select class="star-rating">
-                                                                            <option value="1">1</option>
-                                                                            <option value="2">2</option>
-                                                                            <option value="3">3</option>
-                                                                            <option value="4">4</option>
-                                                                            <option value="5">5</option>
-                                                                        </select>
-                                                                    </span>
-                                                                </p>
-                                                                <p class="feedback-form">
-                                                                    <label for="feedback">Your Review</label>
-                                                                    <textarea id="feedback" name="comment" cols="45" rows="8" aria-required="true"></textarea>
-                                                                </p>
-                                                                <div class="feedback-input">
-                                                                    <p class="feedback-form-author">
-                                                                        <label for="author">Name<span class="required">*</span>
-                                                                        </label>
-                                                                        <input id="author" name="author" value="" size="30" aria-required="true" type="text">
-                                                                    </p>
-                                                                    <p class="feedback-form-author feedback-form-email">
-                                                                        <label for="email">Email<span class="required">*</span>
-                                                                        </label>
-                                                                        <input id="email" name="email" value="" size="30" aria-required="true" type="text">
-                                                                        <span class="required"><sub>*</sub> Required fields</span>
-                                                                    </p>
-                                                                    <div class="feedback-btn">
-                                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">Close</a>
-                                                                        <a href="#">Submit</a>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Feedback Area End Here -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
-                        <!-- Quick View | Modal Area End Here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+<script>
+    $( document ).ready(function() {
+        loadImages();
+    });
+    
+</script>

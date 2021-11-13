@@ -13,9 +13,9 @@
             $this->view->idProduct="";
             $this->view->car=[];
         }
-        function render(){
+        function render($data){
             $this->view->categories = getCategorias();
-            $this->view->products = getProducts();
+            $this->view->product = getProductById($data[0]);
             if(isset($_SESSION["ci"])){
                 $this->view->car = getCartProducts($_SESSION["ci"]);
                 $this->view->products = $this->deducirProductosEnCarro($this->view->products,$this->view->car);
