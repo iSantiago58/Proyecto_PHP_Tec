@@ -72,7 +72,7 @@
                         <div class="footer-logo">
                             <img class="logo-footer" src="<?=URL?>images/menu/logo/1.gif" alt="Footer Logo">
                             <p class="info">
-                                Estamos para servirle, como esclavos de vuestros deseos, siempre y cuando sea legal. Lo ilegal ya lo dejamos.
+                                Estamos para servirle, para dar lo mejor y ser sus mejores proverodes de electrodomesticos.
                             </p>
                         </div>
                         <ul class="des">
