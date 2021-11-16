@@ -107,12 +107,13 @@ if(isset($_SESSION["ci"])){
                                 </span>
                             </p>
                         </div>
+                        <?php if(isset($_SESSION["ci"])){?>
                         <div class="single-add-to-cart">
                             <form action="#" class="cart-quantity">
                                 <button class="add-to-cart" <?=$onClick?> >Agregar al carro</button>
                             </form>
                         </div>
-
+                        <?php }?>
                         <div class="block-reassurance">
                             <ul>
                                 <li>
