@@ -28,7 +28,7 @@
 
     function getProducts(){
         $con = Connect();
-        $sql = "SELECT * FROM producto";
+        $sql = "SELECT * FROM producto where productoesactivo=1";
         $result = $con->query($sql);
         $productos = [];
 
